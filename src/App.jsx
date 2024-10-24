@@ -17,6 +17,7 @@ import SuperAdmin from "./pages/SuperAdmin";
 import SignIn from "./pages/SignIn";
 import ExamRoom from "./pages/ExamRoom";
 import StudentSignUp from "./pages/StudentSignUp";
+import Profile from "./pages/Profile";
 
 let router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +34,7 @@ let router = createBrowserRouter(
         <Route path="/update-student" element={<UpdateStudent />}></Route>
         <Route path="/update-roll" element={<UpdateRoll />}></Route>
         <Route path="/super-xyz" element={<SuperAdmin />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
       </Route>
       <Route path="/sign-in" element={<SignIn />}></Route>
     </>

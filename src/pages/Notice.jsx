@@ -1,5 +1,4 @@
 import NoticeBoard from "../components/NoticeBoard";
-
 const Notice = () => {
   return (
     <div className="p-6 shadow-md rounded-md">
@@ -8,5 +7,4 @@ const Notice = () => {
     </div>
   );
 };
-
 export default Notice;

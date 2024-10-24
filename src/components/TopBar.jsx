@@ -24,9 +24,11 @@ const TopBar = () => {
         {show && (
           <div className="absolute bg-white w-52 py-6 top-20 right-0 shadow-md">
             <ul>
-              <li className="hover:bg-[#F100B7] px-4 py-1 duration-300">
-                Profile
-              </li>
+              <Link to="/profile">
+                <li className="hover:bg-[#F100B7] px-4 py-1 duration-300">
+                  Profile
+                </li>
+              </Link>
               <li className="hover:bg-[#F100B7] px-4 py-1 duration-300">
                 Setting
               </li>
