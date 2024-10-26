@@ -3,7 +3,8 @@ import Pagination from "./Pagination";
 import { useGetSuperAdminQuery } from "../features/api/SuperAdminapiSlice";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import {RotatingLines } from "react-loader-spinner";
+import Spinner from "../spinner/Spinner";
+import ProfileSkeleton from "../skeleton/ProfileSkeleton";
 
 const SuperAdminForm = () => {
   let [loading, setloading] = useState(false);
@@ -43,12 +44,6 @@ const SuperAdminForm = () => {
     return (
       <div className="h-screen flex justify-center items-center">
         Loading...
-      </div>
-    );
-  if (adminError)
-    return (
-      <div className="h-screen flex justify-center items-center">
-        Somthing is wrong ( Admin data loading failed....! ){" "}
       </div>
     );
   // super admin data get successfull end ----------------
@@ -92,90 +87,84 @@ const SuperAdminForm = () => {
       <ToastContainer position="top-right" theme="light" />
       <h1 className="text-center text-3xl font-serif">Main Authority</h1>
       <div className="my-6">
-        <div className="shadow-lg p-6 rounded-md grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <input
-            type="text"
-            value={fromData.AdminName}
-            name="AdminName"
-            onChange={handleFromdata}
-            placeholder="Super Admin Name"
-            className="input input-bordered w-full max-w-xs mb-4"
-          />
-          <input
-            type="text"
-            value={fromData.AdminNid}
-            name="AdminNid"
-            onChange={handleFromdata}
-            placeholder="Super Admin N-id"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <input
-            type="text"
-            value={fromData.AdminBio}
-            name="AdminBio"
-            onChange={handleFromdata}
-            placeholder="Super Admin Bio"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <input
-            type="text"
-            value={fromData.AdminAddress}
-            name="AdminAddress"
-            onChange={handleFromdata}
-            placeholder="Super Admin Address"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <input
-            type="text"
-            value={fromData.AdminPhone}
-            name="AdminPhone"
-            onChange={handleFromdata}
-            placeholder="Super Admin Phone Number"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <input
-            type="email"
-            value={fromData.AdminEmail}
-            name="AdminEmail"
-            onChange={handleFromdata}
-            placeholder="Super Admin Email"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <input
-            type="password"
-            value={fromData.AdminPassword}
-            name="AdminPassword"
-            onChange={handleFromdata}
-            placeholder="Super Admin Password"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <input
-            type="file"
-            className="file-input file-input-bordered w-full max-w-xs"
-          />
-          {loading ? (
-            <button className="btn btn-secondary">
-              <RotatingLines
-                visible={true}
-                height="42"
-                width="42"
-                color="white"
-                strokeWidth="5"
-                animationDuration="0.75"
-                ariaLabel="rotating-lines-loading"
-                wrapperStyle={{}}
-                wrapperClass=""
+        {adminError ? (
+          <ProfileSkeleton />
+        ) : (
+          <div>
+            <div className="shadow-lg p-6 rounded-md grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              <input
+                type="text"
+                value={fromData.AdminName}
+                name="AdminName"
+                onChange={handleFromdata}
+                placeholder="Super Admin Name"
+                className="input input-bordered w-full max-w-xs mb-4"
               />
-            </button>
-          ) : (
-            <button
-              onClick={handleSuperAdminData}
-              className="btn btn-secondary"
-            >
-              Submit
-            </button>
-          )}
-        </div>
+              <input
+                type="text"
+                value={fromData.AdminNid}
+                name="AdminNid"
+                onChange={handleFromdata}
+                placeholder="Super Admin N-id"
+                className="input input-bordered w-full max-w-xs"
+              />
+              <input
+                type="text"
+                value={fromData.AdminBio}
+                name="AdminBio"
+                onChange={handleFromdata}
+                placeholder="Super Admin Bio"
+                className="input input-bordered w-full max-w-xs"
+              />
+              <input
+                type="text"
+                value={fromData.AdminAddress}
+                name="AdminAddress"
+                onChange={handleFromdata}
+                placeholder="Super Admin Address"
+                className="input input-bordered w-full max-w-xs"
+              />
+              <input
+                type="text"
+                value={fromData.AdminPhone}
+                name="AdminPhone"
+                onChange={handleFromdata}
+                placeholder="Super Admin Phone Number"
+                className="input input-bordered w-full max-w-xs"
+              />
+              <input
+                type="email"
+                value={fromData.AdminEmail}
+                name="AdminEmail"
+                onChange={handleFromdata}
+                placeholder="Super Admin Email"
+                className="input input-bordered w-full max-w-xs"
+              />
+              <input
+                type="password"
+                value={fromData.AdminPassword}
+                name="AdminPassword"
+                onChange={handleFromdata}
+                placeholder="Super Admin Password"
+                className="input input-bordered w-full max-w-xs"
+              />
+              <input
+                type="file"
+                className="file-input file-input-bordered w-full max-w-xs"
+              />
+              {loading ? (
+                <Spinner />
+              ) : (
+                <button
+                  onClick={handleSuperAdminData}
+                  className="btn btn-secondary"
+                >
+                  Submit
+                </button>
+              )}
+            </div>
+          </div>
+        )}
 
         <h1 className="text-center text-3xl font-serif mt-24 mb-2">
           Add new admin
