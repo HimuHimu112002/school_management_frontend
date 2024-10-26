@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useGetSuperAdminQuery } from "../features/api/SuperAdminapiSlice";
 const SuperAdminProfile = () => {
   const {
@@ -51,9 +52,11 @@ const SuperAdminProfile = () => {
             <h1 className="text-black font-serif" key={item.id}>
               <strong>Super Admin Password :</strong> {item?.AdminPassword}
             </h1>
+            <Link to={`/super-xyz`}>
+              <button className="btn btn-secondary mt-6 ">Update</button>
+            </Link>
           </>
         ))}
-        <button className="btn btn-secondary mt-6 ">Update</button>
       </div>
     </div>
   );
