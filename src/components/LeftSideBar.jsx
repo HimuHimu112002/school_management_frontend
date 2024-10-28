@@ -9,7 +9,7 @@ import { Link, Outlet } from "react-router-dom";
 const LeftSideBar = () => {
   return (
     <div className="flex gap-x-4">
-      <div className="w-1/6 shadow-lg">
+      <div className="w-1/6 lg:w-auto shadow-lg">
         <ul>
           <Link to="/S-signUp">
             <li className="flex justify-around font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">

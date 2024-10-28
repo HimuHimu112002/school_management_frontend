@@ -1,7 +1,7 @@
 import { RotatingLines } from "react-loader-spinner";
 const Spinner = () => {
   return (
-    <button className="btn btn-secondary">
+    <button className="btn btn-secondary w-full">
       <RotatingLines
         visible={true}
         height="42"

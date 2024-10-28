@@ -18,6 +18,7 @@ import SignIn from "./pages/SignIn";
 import ExamRoom from "./pages/ExamRoom";
 import StudentSignUp from "./pages/StudentSignUp";
 import Profile from "./pages/Profile";
+import ForgotPassword from "./pages/ForgotPassword";
 
 let router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,6 +38,7 @@ let router = createBrowserRouter(
         <Route path="/profile" element={<Profile />}></Route>
       </Route>
       <Route path="/sign-in" element={<SignIn />}></Route>
+      <Route path="/forgot" element={<ForgotPassword />}></Route>
     </>
   )
 );
