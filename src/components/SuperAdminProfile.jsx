@@ -49,9 +49,6 @@ const SuperAdminProfile = () => {
             <h1 className="text-black font-serif" key={item.id}>
               <strong>Super Admin Email :</strong> {item?.AdminEmail}
             </h1>
-            <h1 className="text-black font-serif" key={item.id}>
-              <strong>Super Admin Password :</strong> {item?.AdminPassword}
-            </h1>
             <Link to={`/super-xyz`}>
               <button className="btn btn-secondary mt-6 ">Update</button>
             </Link>

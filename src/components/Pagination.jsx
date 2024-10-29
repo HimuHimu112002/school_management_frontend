@@ -1,6 +1,6 @@
 const Pagination = () => {
   return (
-    <div className="join mt-4">
+    <div className="join mt-4 shadow-lg border border-gray-400">
       <input
         className="join-item btn btn-square"
         type="radio"

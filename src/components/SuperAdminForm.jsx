@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import Pagination from "./Pagination";
 import { useGetSuperAdminQuery } from "../features/api/SuperAdminapiSlice";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import Spinner from "../spinner/Spinner";
 import ProfileSkeleton from "../skeleton/ProfileSkeleton";
+import AdminForm from "./AdminForm";
+import AllAdminInfo from "./AllAdminInfo";
 
 const SuperAdminForm = () => {
   let [loading, setloading] = useState(false);
+
   // super admin data get successfull start ----------------
   const [fromData, setFromData] = useState({
     AdminName: "",
@@ -16,12 +18,12 @@ const SuperAdminForm = () => {
     AdminAddress: "",
     AdminPhone: "",
     AdminEmail: "",
-    AdminPassword: "",
   });
   let handleFromdata = (e) => {
     setFromData({ ...fromData, [e.target.name]: e.target.value });
   };
 
+  // RTK query fetch data get successfull start ----------------
   const {
     data: adminData,
     error: adminError,
@@ -36,10 +38,10 @@ const SuperAdminForm = () => {
         AdminAddress: adminData.data[0].AdminAddress || "",
         AdminPhone: adminData.data[0].AdminPhone || "",
         AdminEmail: adminData.data[0].AdminEmail || "",
-        AdminPassword: adminData.data[0].AdminPassword || "",
       });
     }
   }, [adminData]);
+  
   if (adminIsLoading)
     return (
       <div className="h-screen flex justify-center items-center">
@@ -53,7 +55,7 @@ const SuperAdminForm = () => {
   let handleSuperAdminData = async () => {
     setloading(true);
     const headers = {
-      user_id: "670aa0692dbab18cccf27b82",
+      user_id: "6720be68a9bdc1c1a28220f0",
       "Content-Type": "application/json",
     };
     let res = await axios.post(
@@ -65,7 +67,6 @@ const SuperAdminForm = () => {
         AdminAddress: fromData.AdminAddress,
         AdminPhone: fromData.AdminPhone,
         AdminEmail: fromData.AdminEmail,
-        AdminPassword: fromData.AdminPassword,
       },
       { headers }
     );
@@ -141,14 +142,6 @@ const SuperAdminForm = () => {
                 className="input input-bordered w-full max-w-xs"
               />
               <input
-                type="password"
-                value={fromData.AdminPassword}
-                name="AdminPassword"
-                onChange={handleFromdata}
-                placeholder="Super Admin Password"
-                className="input input-bordered w-full max-w-xs"
-              />
-              <input
                 type="file"
                 className="file-input file-input-bordered w-full max-w-xs"
               />
@@ -169,99 +162,8 @@ const SuperAdminForm = () => {
         <h1 className="text-center text-3xl font-serif mt-24 mb-2">
           Add new admin
         </h1>
-        <div className="shadow-lg p-6 rounded-md grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <input
-            type="text"
-            placeholder="Admin Name"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <input
-            type="text"
-            placeholder="Admin N-id"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <input
-            type="text"
-            placeholder="Admin Bio"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <input
-            type="text"
-            placeholder="Admin Address"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <input
-            type="text"
-            placeholder="Admin Phone Number"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <input
-            type="email"
-            placeholder="Admin Email"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <input
-            type="file"
-            className="file-input file-input-bordered w-full max-w-xs mr-2"
-          />
-          <button className="btn btn-secondary">Submit</button>
-        </div>
-        <h1 className="text-center text-3xl font-serif mt-24 mb-2">
-          All admin
-        </h1>
-        <>
-          <div className="overflow-x-auto shadow-lg p-6 rounded-md">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>mark</th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Profile</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* row 1 */}
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="font-bold">Hart Hagerty</div>
-                        <div className="text-sm opacity-50">United States</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    Zemlak, Daniel and Leannon
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      Desktop Support Technician
-                    </span>
-                  </td>
-                  <th>
-                    <button className="btn btn-ghost bg-green-800 text-white btn-sm">
-                      Profile
-                    </button>
-                  </th>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <Pagination />
-        </>
+        <AdminForm/>
+        <AllAdminInfo/>
       </div>
     </div>
   );

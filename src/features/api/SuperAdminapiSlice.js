@@ -1,29 +1,42 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const SuperAdminapiSlice = createApi({
-  reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/api/v1' }),
+  reducerPath: "api",
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/api/v1" }),
   endpoints: (builder) => ({
     getSuperAdmin: builder.query({
-      query: () => '/get-super-admin',
+      query: () => "/get-super-admin",
     }),
-    // updateAdmin: builder.query({
-    //   query: (id) => `/users/${id}`,
-    // }),
-    // createItem: builder.mutation({
-    //   query: (newItem) => ({
-    //     url: '/items',
-    //     method: 'POST',
-    //     body: newItem,
-    //   }),
-    // }),
-    // updateUserProfile: builder.mutation({
-    //   query: ({ headers, reqBody }) => ({
-    //     url: `/update-super-admin/${headers}`,
-    //     method: 'POST',
-    //     body: reqBody,
-    //   }),
-    // }),
+    login: builder.mutation({
+      query: (data) => ({
+        url: "/sign-in",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    forgotPassword: builder.mutation({
+      query: (data) => ({
+        url: "/forgot",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    updateSuperAdmin: builder.mutation({
+      query: (data, headers) => ({
+        url: "/update-super-admin",
+        method: "POST",
+        body: data,
+        headers: {
+          user_id: `${headers}`,
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
   }),
 });
-export const { useGetSuperAdminQuery,useUpdateAdminQuery, useCreateItemMutation, useUpdateUserProfileMutation } = SuperAdminapiSlice;
+export const {
+  useGetSuperAdminQuery,
+  useForgotPasswordMutation,
+  useLoginMutation,
+  useUpdateSuperAdminMutation,
+} = SuperAdminapiSlice;
