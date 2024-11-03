@@ -6,9 +6,9 @@ import { IoMdEye } from "react-icons/io";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { socket } from "../socket/socket";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const AllAdminInfo = () => {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   // RTK query fetch data get successfull start ----------------
   // const {
   //   data: item,
@@ -40,7 +40,7 @@ const AllAdminInfo = () => {
   // super admin data get successfull end ----------------
 
   // admin data delete with socket start ----------------
-  let handleDelete = (id,user) => {
+  let handleDelete = (id, user) => {
     socket.emit("adminDelete", id, user);
     socket.on("deleteAdmin", (adminData) => {
       if (adminData._id) {
@@ -51,13 +51,20 @@ const AllAdminInfo = () => {
         });
       }
     });
-    socket.on("deleteAdminUser")
+    socket.on("deleteAdminUser");
   };
   // admin data delete with socket end ----------------
 
-  let handleViewProfile = (id)=>{
-    navigate(`/adminProfile/${id}`)
-  }
+  let handleViewProfile = (id) => {
+    navigate(`/adminProfile/${id}`);
+  };
+
+  let handleStatusChange = (id, value, item) => {
+    console.log(item.user);
+    socket.emit("adminStatus", id, value, item.user);
+    socket.on("updateAdminStatus");
+    socket.on("updateUserStatus");
+  };
   return (
     <>
       <h1 className="text-center text-3xl font-serif mt-24 mb-2">All admin</h1>
@@ -65,7 +72,7 @@ const AllAdminInfo = () => {
         <table className="table">
           <thead>
             <tr className="text-xl font-serif">
-              <th>Serial</th>
+              <th>key</th>
               <th>Name</th>
               <th>Status</th>
               <th>Action</th>
@@ -76,7 +83,7 @@ const AllAdminInfo = () => {
           <tbody className="font-serif">
             {admin.map((item, i) => (
               <tr className="divide-x-2" key={i}>
-                <td>{i+1}</td>
+                <td>{i + 1}</td>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -95,24 +102,35 @@ const AllAdminInfo = () => {
                 </td>
                 <td>
                   <p className="bg-green-600 text-white text-xl p-4 text-center rounded-md">
-                    {item?.AdminStatus}
+                    {item.AdminStatus}
                   </p>
                 </td>
                 <td>
-                  <select className="select select-bordered w-full">
-                    <option className="text-xl">Block</option>
-                    <option className="text-xl">unBlock</option>
+                  <select
+                    onChange={(e) =>
+                      handleStatusChange(item._id, e.target.value, item)
+                    }
+                    className="select select-bordered w-full"
+                  >
+                    <option>select</option>
+                    <option className="text-sm">Block</option>
+                    <option className="text-sm">unBlock</option>
                   </select>
                 </td>
                 <td>
-                  <button onClick={()=> handleViewProfile(item._id)} className="btn btn-success text-white text-xl my-2 w-full">
+                  <button
+                    onClick={() => handleViewProfile(item._id)}
+                    className="btn btn-success text-white text-xl my-2 w-full"
+                  >
                     <IoMdEye className="text-xl" />
                   </button>
                 </td>
                 <td className="gap-y-2">
-                  <button className="btn btn-success text-white text-xl my-2 w-full">
-                    Edit <FaEdit className="text-xl" />
-                  </button>
+                  <Link to="/updateAdminProfile">
+                    <button className="btn btn-success text-white text-xl my-2 w-full">
+                      Edit <FaEdit className="text-xl" />
+                    </button>
+                  </Link>
                   <button
                     onClick={() => handleDelete(item._id, item.user)}
                     className="btn btn-error text-white text-xl w-full"

@@ -20,6 +20,7 @@ import StudentSignUp from "./pages/StudentSignUp";
 import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
 import AllAdminProfile from "./pages/AllAdminProfile";
+import UpdateAdmin from "./pages/UpdateAdmin";
 
 let router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +39,7 @@ let router = createBrowserRouter(
         <Route path="/super-xyz" element={<SuperAdmin />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/adminProfile/:id" element={<AllAdminProfile />}></Route>
+        <Route path="/updateAdminProfile" element={<UpdateAdmin />}></Route>
       </Route>
       <Route path="/sign-in" element={<SignIn />}></Route>
       <Route path="/forgot" element={<ForgotPassword />}></Route>

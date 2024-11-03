@@ -22,17 +22,22 @@ const TopBar = () => {
         </div>
 
         {show && (
-          <div className="absolute bg-white w-52 py-6 top-20 right-0 shadow-md">
+          <div className="absolute bg-white w-52 py-6 top-20 right-0 shadow-lg border">
             <ul>
               <Link to="/profile">
-                <li className="hover:bg-[#F100B7] px-4 py-1 duration-300">
+                <li className="hover:bg-[#F100B7] hover:text-white px-4 py-1 duration-300">
                   Profile
                 </li>
               </Link>
-              <li className="hover:bg-[#F100B7] px-4 py-1 duration-300">
+              <Link to="/updateAdminProfile">
+                <li className="hover:bg-[#F100B7] hover:text-white px-4 py-1 duration-300">
+                  Admin Profile
+                </li>
+              </Link>
+              <li className="hover:bg-[#F100B7] hover:text-white px-4 py-1 duration-300">
                 Setting
               </li>
-              <li className="hover:bg-[#F100B7] px-4 py-1 duration-300">
+              <li className="hover:bg-[#F100B7] hover:text-white px-4 py-1 duration-300">
                 Logout
               </li>
             </ul>

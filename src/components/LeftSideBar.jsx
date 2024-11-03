@@ -9,16 +9,16 @@ import { Link, Outlet } from "react-router-dom";
 const LeftSideBar = () => {
   return (
     <div className="flex gap-x-4">
-      <div className="w-1/6 lg:w-auto shadow-lg">
+      <div className="w-1/4 shadow-lg border">
         <ul>
           <Link to="/S-signUp">
-            <li className="flex justify-around font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
+            <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
               <MdAppRegistration className="mt-1" /> <p>Student Registration</p>
             </li>
           </Link>
 
           <Link to="/T-signUp">
-            <li className="flex justify-around font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
+            <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
               <MdAppRegistration className="mt-1" />
               <p>Teacher Registration</p>
             </li>
@@ -99,7 +99,7 @@ const LeftSideBar = () => {
           </h1>
         </Link>
       </div>
-      <div className="w-5/6 shadow-lg">
+      <div className="w-3/4 shadow-lg border">
         <Outlet />
       </div>
     </div>

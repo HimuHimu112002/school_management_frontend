@@ -43,11 +43,11 @@ const AdminProfile = () => {
           <h1 className="text-black font-serif">
             <strong>Admin Email :</strong> {adminData?.AdminEmail}
           </h1>
-          <h1 className="text-black font-serif">
-            <strong>Admin Role :</strong> {adminData?.AdminRole}
+          <h1 className="text-black font-serif mb-2">
+            <strong>Admin Role :</strong><span className="bg-green-500 px-2 py-1 rounded-md ml-2"> {adminData?.AdminRole}</span>
           </h1>
           <h1 className="text-black font-serif">
-            <strong>Admin Status :</strong> {adminData?.AdminStatus}
+            <strong>Admin Status :</strong> <span className="bg-green-500 px-2 py-1 rounded-md ml-2">{adminData?.AdminStatus}</span> 
           </h1>
           <Link to={`/super-xyz`}>
             <button className="btn btn-secondary mt-6 ">Back</button>

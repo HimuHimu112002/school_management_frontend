@@ -84,7 +84,7 @@ const SuperAdminForm = () => {
   };
   // super admin data update successfull end ----------------
   return (
-    <div className="p-10">
+    <div>
       <ToastContainer position="top-right" theme="light" />
       <h1 className="text-center text-3xl font-serif">Main Authority</h1>
       <div className="my-6">
@@ -95,8 +95,8 @@ const SuperAdminForm = () => {
             <div className="shadow-lg p-6 rounded-md grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               <input
                 type="text"
-                value={fromData.AdminName}
                 name="AdminName"
+                value={fromData.AdminName}
                 onChange={handleFromdata}
                 placeholder="Super Admin Name"
                 className="input input-bordered w-full max-w-xs mb-4"
