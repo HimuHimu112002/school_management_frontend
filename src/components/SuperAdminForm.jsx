@@ -84,7 +84,7 @@ const SuperAdminForm = () => {
   };
   // super admin data update successfull end ----------------
   return (
-    <div>
+    <div className="mt-5">
       <ToastContainer position="top-right" theme="light" />
       <h1 className="text-center text-3xl font-serif">Main Authority</h1>
       <div className="my-6">
@@ -140,10 +140,6 @@ const SuperAdminForm = () => {
                 onChange={handleFromdata}
                 placeholder="Super Admin Email"
                 className="input input-bordered w-full max-w-xs"
-              />
-              <input
-                type="file"
-                className="file-input file-input-bordered w-full max-w-xs"
               />
               {loading ? (
                 <Spinner />

@@ -20,7 +20,7 @@ const UpdateAdminProfile = () => {
 
   useEffect(() => {
     const headers = {
-      user_id: "672651629d60623edde8714e",
+      user_id: "672b6e2ff27d24dd2129a50b",
       "Content-Type": "application/json",
     };
     async function singleAdminData() {
@@ -38,7 +38,7 @@ const UpdateAdminProfile = () => {
   let handleSuperAdminData = async () => {
     setloading(true);
     const headers = {
-      user_id: "672651629d60623edde8714e",
+      user_id: "672b6e2ff27d24dd2129a50b",
       "Content-Type": "application/json",
     };
     let res = await axios.post(

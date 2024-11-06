@@ -21,39 +21,71 @@ const SuperAdminProfile = () => {
     );
   return (
     <div className="my-10">
-      <div className="w-24 h-24 bg-red-300 rounded-full mx-auto flex justify-center items-center">
-        <img
-          className="w-100 h-100 rounded-full"
-          src="https://img.daisyui.com/images/profile/demo/5@94.webp"
-          alt="profile"
-        ></img>
-      </div>
-      <div className="shadow-lg p-6 rounded-md">
-        {adminData?.data?.map((item) => (
-          <>
-            <h1 className="text-black font-serif" key={item.id}>
-              <strong>Super Admin Name :</strong> {item?.AdminName}
-            </h1>
-            <h1 className="text-black font-serif" key={item.id}>
-              <strong>Super Admin Nid :</strong> {item?.AdminNid}
-            </h1>
-            <h1 className="text-black font-serif" key={item.id}>
-              <strong>Super Admin Bio :</strong> {item?.AdminBio}
-            </h1>
-            <h1 className="text-black font-serif" key={item.id}>
-              <strong>Super Admin Address :</strong> {item?.AdminAddress}
-            </h1>
-            <h1 className="text-black font-serif" key={item.id}>
-              <strong>Super Admin Phone :</strong> {item?.AdminPhone}
-            </h1>
-            <h1 className="text-black font-serif" key={item.id}>
-              <strong>Super Admin Email :</strong> {item?.AdminEmail}
-            </h1>
-            <Link to={`/super-xyz`}>
-              <button className="btn btn-secondary mt-6 ">Update</button>
-            </Link>
-          </>
-        ))}
+      <div className="w-2/4 m-auto p-5 bg-gray-900 rounded">
+        <div className="w-24 h-24 rounded-full mx-auto flex justify-center items-center">
+          <img
+            className="w-100 h-100 rounded-full"
+            src="https://img.daisyui.com/images/profile/demo/5@94.webp"
+            alt="profile"
+          ></img>
+        </div>
+        <div className="my-4">
+          {adminData?.data?.map((item) => (
+            <>
+              <strong className="text-success">Super Admin Name :</strong>
+              <h1
+                className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3"
+                key={item.id}
+              >
+                {item?.AdminName}
+              </h1>
+
+              <strong className="text-success">Super Admin Nid :</strong>
+              <h1
+                className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3"
+                key={item.id}
+              >
+                {item?.AdminNid}
+              </h1>
+
+              <strong className="text-success">Super Admin Bio :</strong>
+              <h1
+                className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3"
+                key={item.id}
+              >
+                {item?.AdminBio}
+              </h1>
+
+              <strong className="text-success">Super Admin Address :</strong>
+              <h1
+                className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3"
+                key={item.id}
+              >
+                {item?.AdminAddress}
+              </h1>
+
+              <strong className="text-success">Super Admin Phone :</strong>
+              <h1
+                className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3"
+                key={item.id}
+              >
+                {item?.AdminPhone}
+              </h1>
+
+              <strong className="text-success">Super Admin Email :</strong>
+              <h1
+                className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3"
+                key={item.id}
+              >
+                {item?.AdminEmail}
+              </h1>
+
+              <Link to={`/super-xyz`}>
+                <button className="btn btn-success text-white text-xl w-full mt-6 ">Update</button>
+              </Link>
+            </>
+          ))}
+        </div>
       </div>
     </div>
   );

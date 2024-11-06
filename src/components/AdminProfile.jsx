@@ -16,45 +16,63 @@ const AdminProfile = () => {
   }, []);
   return (
     <div className="my-10">
-      <div className="w-24 h-24 bg-red-300 rounded-full mx-auto flex justify-center items-center">
-        <img
-          className="w-100 h-100 rounded-full"
-          src="https://img.daisyui.com/images/profile/demo/5@94.webp"
-          alt="profile"
-        ></img>
-      </div>
-      <div className="shadow-lg p-6 rounded-md">
-        <>
-          <h1 className="text-black font-serif">
-            <strong>Admin Name :</strong> {adminData?.AdminName}
-          </h1>
-          <h1 className="text-black font-serif">
-            <strong>Admin Nid :</strong> {adminData?.AdminNid}
-          </h1>
-          <h1 className="text-black font-serif">
-            <strong>Admin Bio :</strong> {adminData?.AdminBio}
-          </h1>
-          <h1 className="text-black font-serif">
-            <strong>Admin Address :</strong> {adminData?.AdminAddress}
-          </h1>
-          <h1 className="text-black font-serif">
-            <strong>Admin Phone :</strong> {adminData?.AdminPhone}
-          </h1>
-          <h1 className="text-black font-serif">
-            <strong>Admin Email :</strong> {adminData?.AdminEmail}
-          </h1>
-          <h1 className="text-black font-serif mb-2">
-            <strong>Admin Role :</strong><span className="bg-green-500 px-2 py-1 rounded-md ml-2"> {adminData?.AdminRole}</span>
-          </h1>
-          <h1 className="text-black font-serif">
-            <strong>Admin Status :</strong> <span className="bg-green-500 px-2 py-1 rounded-md ml-2">{adminData?.AdminStatus}</span> 
-          </h1>
-          <Link to={`/super-xyz`}>
-            <button className="btn btn-secondary mt-6 ">Back</button>
-          </Link>
-        </>
-        {/* {adminData.map((item) => (
-        ))} */}
+      <div className="w-2/4 m-auto p-5 bg-gray-900 rounded">
+        <div className="w-24 h-24 rounded-full mx-auto flex justify-center items-center">
+          <img
+            className="w-100 h-100 rounded-full"
+            src="https://img.daisyui.com/images/profile/demo/5@94.webp"
+            alt="profile"
+          ></img>
+        </div>
+        <div className="shadow-lg p-6 rounded-md">
+          <>
+            <strong className="text-success">Admin Name :</strong>
+            <h1 className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3">
+              {adminData?.AdminName}
+            </h1>
+
+            <strong className="text-success">Admin Nid :</strong>
+            <h1 className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3">
+              {adminData?.AdminNid}
+            </h1>
+
+            <strong className="text-success">Admin Bio :</strong>
+            <h1 className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3">
+              {adminData?.AdminBio}
+            </h1>
+
+            <strong className="text-success">Admin Address :</strong>
+            <h1 className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3">
+              {adminData?.AdminAddress}
+            </h1>
+
+            <strong className="text-success">Admin Phone :</strong>
+            <h1 className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3">
+              {adminData?.AdminPhone}
+            </h1>
+
+            <strong className="text-success">Admin Email :</strong>
+            <h1 className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3">
+              {adminData?.AdminEmail}
+            </h1>
+
+            <strong className="text-success">Admin Role :</strong>
+            <h1 className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3">
+              {adminData?.AdminRole}
+            </h1>
+
+            <strong className="text-success">Admin Status :</strong>
+            <h1 className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3">
+              {adminData?.AdminStatus}
+            </h1>
+
+            <Link to={`/super-xyz`}>
+              <button className="btn btn-success w-full text-white text-xl mt-6 ">
+                Back
+              </button>
+            </Link>
+          </>
+        </div>
       </div>
     </div>
   );
