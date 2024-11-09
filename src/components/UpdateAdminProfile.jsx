@@ -2,8 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import Spinner from "../spinner/Spinner";
+import { useParams } from "react-router-dom";
 
 const UpdateAdminProfile = () => {
+  let params = useParams();
   let [loading, setloading] = useState(false);
 
   const [fromData, setFromData] = useState({
@@ -20,7 +22,7 @@ const UpdateAdminProfile = () => {
 
   useEffect(() => {
     const headers = {
-      user_id: "672b6e2ff27d24dd2129a50b",
+      user_id: `${params.id}`,
       "Content-Type": "application/json",
     };
     async function singleAdminData() {
@@ -38,7 +40,7 @@ const UpdateAdminProfile = () => {
   let handleSuperAdminData = async () => {
     setloading(true);
     const headers = {
-      user_id: "672b6e2ff27d24dd2129a50b",
+      user_id: `${params.id}`,
       "Content-Type": "application/json",
     };
     let res = await axios.post(
@@ -53,7 +55,7 @@ const UpdateAdminProfile = () => {
       },
       { headers }
     );
-    console.log(res.data)
+    console.log(res.data);
     if (res.data["status"] != "success") {
       toast.success(res.data.message);
       setTimeout(() => {
@@ -66,27 +68,27 @@ const UpdateAdminProfile = () => {
       }, 2000);
     }
   };
-  
+
   return (
     <div className="my-10">
-    <ToastContainer position="top-right" theme="light" />
-      <div className="w-24 h-24 bg-red-300 rounded-full mx-auto flex justify-center items-center">
-        <img
-          className="w-100 h-100 rounded-full"
-          src="https://img.daisyui.com/images/profile/demo/5@94.webp"
-          alt="profile"
-        ></img>
-      </div>
-      <div className="shadow-lg rounded-md">
+      <ToastContainer position="top-right" theme="light" />
+      <div className="m-auto px-3 shadow-lg rounded-md mt-20 border">
+        <div className="w-24 h-24 rounded-full mx-auto flex justify-center items-center">
+          <img
+            className="w-100 h-100 rounded-full"
+            src="https://img.daisyui.com/images/profile/demo/5@94.webp"
+            alt="profile"
+          ></img>
+        </div>
         <div>
-          <div className="p-6 rounded-md grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="p-6 rounded-md grid gap-y-2 gap-x-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-auto">
             <input
               type="text"
               name="AdminName"
               value={fromData.AdminName}
               onChange={handleFromdata}
               placeholder="Admin Name"
-              className="input input-bordered w-full max-w-xs mb-4"
+              className="input input-bordered w-full max-w-xs"
             />
             <input
               type="text"

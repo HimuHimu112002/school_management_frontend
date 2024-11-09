@@ -135,7 +135,7 @@ const AllAdminInfo = () => {
                   </button>
                 </td>
                 <td className="gap-y-2">
-                  <Link to="/updateAdminProfile">
+                  <Link to={`/updateAdminProfile/${item._id}`}>
                     <button className="btn btn-success text-white text-xl my-2 w-full">
                       Edit <FaEdit className="text-xl" />
                     </button>

@@ -71,6 +71,11 @@ const AdminProfile = () => {
                 Back
               </button>
             </Link>
+            <Link to={`/updateAdminProfile/${adminData._id}`}>
+              <button className="btn btn-success w-full text-white text-xl mt-6 ">
+                Update profile
+              </button>
+            </Link>
           </>
         </div>
       </div>
