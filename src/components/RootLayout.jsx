@@ -4,7 +4,6 @@ const RootLayout = () => {
   return (
     <div>
       <TopBar />
-      
       <LeftSideBar />
     </div>
   );

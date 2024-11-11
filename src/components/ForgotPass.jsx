@@ -81,7 +81,7 @@ const ForgotPass = () => {
             onClick={handleForgot}
             className="btn btn-secondary w-full my-2"
           >
-            sign-in
+            Forgot password
           </button>
         )}
       </div>

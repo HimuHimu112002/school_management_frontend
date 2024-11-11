@@ -1,15 +1,14 @@
-import { RotatingLines } from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 const Spinner = () => {
   return (
     <button className="btn btn-secondary w-full">
-      <RotatingLines
+      <Oval
         visible={true}
         height="42"
         width="42"
         color="white"
         strokeWidth="5"
-        animationDuration="0.75"
-        ariaLabel="rotating-lines-loading"
+        ariaLabel="oval-loading"
         wrapperStyle={{}}
         wrapperClass=""
       />
@@ -17,3 +16,4 @@ const Spinner = () => {
   );
 };
 export default Spinner;
+// render()

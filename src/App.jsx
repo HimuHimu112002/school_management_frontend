@@ -21,12 +21,14 @@ import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
 import AllAdminProfile from "./pages/AllAdminProfile";
 import UpdateAdmin from "./pages/UpdateAdmin";
+import HomePage from "./pages/HomePage";
 
 let router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<RootLayout />}>
+      <Route element={<RootLayout />}>
         <Route path="/S-signUp" element={< StudentSignUp/>}></Route>
+        <Route path="/" element={< HomePage/>}></Route>
         <Route path="/T-signUp" element={<TeacherSignUp />}></Route>
         <Route path="/all-student" element={<AllStudent />}></Route>
         <Route path="/all-teacher" element={<AllTeachers />}></Route>

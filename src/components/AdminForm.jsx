@@ -92,14 +92,6 @@ const AdminForm = () => {
           placeholder="Admin Email"
           className="input input-bordered w-full max-w-xs"
         />
-        <input
-          type="password"
-          onChange={(e) =>
-            setFromData({ ...fromData, AdminPassword: e.target.value })
-          }
-          placeholder="Admin Password"
-          className="input input-bordered w-full max-w-xs"
-        />
         {loading ? (
           <Spinner />
         ) : (
