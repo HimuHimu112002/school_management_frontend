@@ -1,75 +1,59 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { clearToken, GetUserRoll } from "../utility/storageUtility";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 const TopBar = () => {
   let navigate = useNavigate();
   let roll = GetUserRoll();
-  let [show, setShow] = useState(false);
   let handleLogout = () => {
     clearToken();
     navigate("/sign-in");
   };
-  let handleSuperAdminprofile = () => {
-    let roll = GetUserRoll();
-    if (roll === "Super-Admin") {
-      navigate(`/super-xyz`);
-    } else {
-      //toast.success("Access only for super-admin");
-    }
-  };
   return (
-    <div className="bg-green-300 w-full h-20 flex justify-between">
+    <div className="bg-[#F100B7] w-full h-20 flex justify-between">
       <ToastContainer position="top-right" theme="light" />
-      <div className="px-6 flex justify-start items-center text-4xl font-serif text-white">
+      <div className="w-[50%] flex justify-start items-center px-6 text-4xl font-serif text-white">
         <Link to="/">E-school</Link>
       </div>
-      <div className="relative flex justify-center items-center mr-5 cursor-pointer">
-        <div className="avatar">
-          <div
-            onClick={() => setShow(!show)}
-            className="mask mask-squircle h-12 w-12"
-          >
-            <img
-              src="https://img.daisyui.com/images/profile/demo/5@94.webp"
-              alt="Avatar Tailwind CSS Component"
-            />
-          </div>
-        </div>
-
-        {show && (
-          <div className="absolute bg-white w-52 py-6 top-20 right-0 shadow-lg border">
-            <ul>
-              <li
-                onClick={handleSuperAdminprofile}
-                className="hover:bg-[#F100B7] hover:text-white px-4 py-1 duration-300"
-              >
-                Profile
-              </li>
+      <div className="w-[50%] flex items-center relative mr-5 cursor-pointer">
+        <label
+          htmlFor="my-drawer-4"
+          className="drawer-button btn btn-secondary ml-[80%]"
+        >
+          User profile
+        </label>
+        <div className="drawer drawer-end z-10">
+          <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-side">
+            <label
+              htmlFor="my-drawer-4"
+              aria-label="close sidebar"
+              className="drawer-overlay"
+            ></label>
+            <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
               {roll === "Admin" ? (
                 <Link to="/PersonalAdminProfile">
-                  <li className="hover:bg-[#F100B7] hover:text-white px-4 py-1 duration-300">
+                  <li className="hover:bg-[#F100B7] text-xl rounded hover:text-white px-4 py-1 duration-300">
                     Admin Profile
                   </li>
                 </Link>
               ) : (
-                <li className="hover:bg-[#F100B7] hover:text-white px-4 py-1 duration-300">
+                <li className="hover:bg-[#F100B7] text-xl rounded hover:text-white px-4 py-1 duration-300">
                   Admin Profile
                 </li>
               )}
-              <li className="hover:bg-[#F100B7] hover:text-white px-4 py-1 duration-300">
+              <li className="hover:bg-[#F100B7] text-xl rounded hover:text-white px-4 py-1 duration-300">
                 Setting
               </li>
               <li
                 onClick={handleLogout}
-                className="hover:bg-[#F100B7] hover:text-white px-4 py-1 duration-300"
+                className="hover:bg-[#F100B7] text-xl rounded hover:text-white px-4 py-1 duration-300"
               >
                 Logout
               </li>
             </ul>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

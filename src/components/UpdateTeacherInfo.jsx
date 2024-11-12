@@ -3,7 +3,7 @@ import Pagination from "./Pagination";
 const UpdateTeacherInfo = () => {
   return (
     <>
-      <div className="overflow-x-auto px-4 shadow-md p-6 rounded-md">
+      <div className="overflow-x-auto px-4 shadow-md p-6 rounded-md animate-slideIn">
         <h1 className="text-center py-8 text-4xl font-serif">Update teachers info</h1>
         <div className="flex gap-x-4 px-4">
           <div className="form-control w-80">

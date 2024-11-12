@@ -110,7 +110,7 @@ const AllAdminInfo = () => {
                   </div>
                 </td>
                 <td>
-                  <p className="bg-green-600 text-white text-xl p-4 text-center rounded-md">
+                  <p className="bg-secondary text-white text-xl p-4 text-center rounded-md">
                     {item.AdminStatus}
                   </p>
                 </td>
@@ -129,14 +129,14 @@ const AllAdminInfo = () => {
                 <td>
                   <button
                     onClick={() => handleViewProfile(item._id)}
-                    className="btn btn-success text-white text-xl my-2 w-full"
+                    className="btn btn-secondary text-white text-xl my-2 w-full"
                   >
                     <IoMdEye className="text-xl" />
                   </button>
                 </td>
                 <td className="gap-y-2">
                   <Link to={`/updateAdminProfile/${item._id}`}>
-                    <button className="btn btn-success text-white text-xl my-2 w-full">
+                    <button className="btn btn-secondary text-white text-xl my-2 w-full">
                       Edit <FaEdit className="text-xl" />
                     </button>
                   </Link>
@@ -153,17 +153,17 @@ const AllAdminInfo = () => {
         </table>
       </div>
       <button
-        className="bg-green-500 p-2 rounded text-white mt-4 cursor-pointer"
+        className="bg-secondary p-2 rounded text-white mt-4 cursor-pointer"
         onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
         disabled={currentPage === 1}
       >
         Previous
       </button>
 
-      <span className="mx-2 bg-green-500 p-2 rounded text-white mt-4 cursor-pointer">{`Page ${currentPage} of ${totalPages}`}</span>
+      <span className="mx-2 bg-secondary p-2 rounded text-white mt-4 cursor-pointer">{`Page ${currentPage} of ${totalPages}`}</span>
 
       <button
-        className="bg-green-500 p-2 rounded text-white mt-4 cursor-pointer"
+        className="bg-secondary p-2 rounded text-white mt-4 cursor-pointer"
         onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
         disabled={currentPage === totalPages}
       >

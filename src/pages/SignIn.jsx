@@ -32,6 +32,7 @@ const SignIn = () => {
         userEmail: userEmail,
         userPassword: userPass,
       }).unwrap();
+      console.log(res.token)
       setUserRoll(res.roll)
       setToken(res.token)
       if (res["status"] === "success") {
@@ -51,7 +52,7 @@ const SignIn = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen animate-slideIn">
       <ToastContainer position="top-right" theme="light" />
       <div className="w-auto lg:w-2/6 mx-auto shadow-xl p-10 rounded-lg border border-red-300">
         <h1 className="text-center text-3xl font-serif">Sign-in</h1>

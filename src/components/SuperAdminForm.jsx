@@ -84,7 +84,7 @@ const SuperAdminForm = () => {
   };
   // super admin data update successfull end ----------------
   return (
-    <div className="mt-5">
+    <div className="mt-5 animate-slideIn">
       <ToastContainer position="top-right" theme="light" />
       <h1 className="text-center text-3xl font-serif">Main Authority</h1>
       <div className="my-6">

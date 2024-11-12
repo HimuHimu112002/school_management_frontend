@@ -3,11 +3,11 @@ import Pagination from "./Pagination";
 const AllTeacherInfo = () => {
   return (
     <>
-      <div className="overflow-x-auto shadow-md p-6 rounded-md">
-        <h1 className="text-center py-8 text-4xl font-serif">All Teacher's</h1>
+      <div className="overflow-x-auto shadow-md p-6 rounded-md animate-slideIn">
+        <h1 className="text-center py-8 text-2xl font-serif">All Teacher's</h1>
         <div className="flex gap-x-4 px-4">
           <div className="form-control w-80">
-            <h3 className="mb-4 text-3xl font-serif">Search teacher's id</h3>
+            <h3 className="mb-4 text-xl font-serif">Search teacher's id</h3>
             <input
               type="text"
               placeholder="Search"

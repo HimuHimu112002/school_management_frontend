@@ -1,7 +1,7 @@
 const AddNewStudent = () => {
   return (
     <>
-      <div className="my-6 shadow-md p-6 rounded-md">
+      <div className="my-6 shadow-lg p-6 rounded-md animate-slideIn">
         <h1 className="text-center text-3xl font-serif mb-4">New Student</h1>
         <div className="grid gap-x-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <input

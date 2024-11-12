@@ -15,7 +15,7 @@ const AdminProfile = () => {
     singleAdmin();
   }, []);
   return (
-    <div className="my-10">
+    <div className="my-10 animate-slideIn">
       <div className="w-2/4 m-auto p-5 bg-gray-900 rounded">
         <div className="w-24 h-24 rounded-full mx-auto flex justify-center items-center">
           <img

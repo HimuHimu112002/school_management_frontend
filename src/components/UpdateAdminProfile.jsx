@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import Spinner from "../spinner/Spinner";
 import { useParams } from "react-router-dom";
-
+import { CiCamera } from "react-icons/ci";
 const UpdateAdminProfile = () => {
   let params = useParams();
   let [loading, setloading] = useState(false);
@@ -69,15 +69,16 @@ const UpdateAdminProfile = () => {
   };
 
   return (
-    <div className="my-10">
+    <div className="my-10 animate-slideIn">
       <ToastContainer position="top-right" theme="light" />
       <div className="m-auto px-3 shadow-lg rounded-md mt-20 border">
-        <div className="w-24 h-24 rounded-full mx-auto flex justify-center items-center">
+        <div className="relative w-24 h-24 rounded-full mx-auto flex justify-center items-center border border-gray-600 p-1">
           <img
             className="w-100 h-100 rounded-full"
             src="https://img.daisyui.com/images/profile/demo/5@94.webp"
             alt="profile"
           ></img>
+          <CiCamera className="text-4xl absolute right-0 bottom-0 cursor-pointer" />
         </div>
         <div>
           <div className="p-6 rounded-md grid gap-y-2 gap-x-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-auto">

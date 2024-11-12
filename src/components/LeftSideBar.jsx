@@ -6,7 +6,7 @@ import { MdAppRegistration } from "react-icons/md";
 import { SiGoogleclassroom } from "react-icons/si";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { clearToken, GetUserRoll } from "../utility/storageUtility";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 const LeftSideBar = () => {
   let navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const LeftSideBar = () => {
     if (roll === "Super-Admin") {
       navigate(`/super-xyz`);
     } else {
-      //toast.success("Access only for super-admin");
+      toast.success("Access only for super-admin");
       navigate(`/`);
     }
   };
@@ -27,7 +27,6 @@ const LeftSideBar = () => {
 
   return (
     <div className="flex gap-x-4">
-      <ToastContainer position="top-right" theme="light" />
       <div className="w-1/4 shadow-lg border">
         <ul>
           <Link to="/S-signUp">

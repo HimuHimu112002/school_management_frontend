@@ -6,6 +6,7 @@ export function GetUserRoll() {
   return localStorage.getItem("roll");
 }
 export function setToken(token) {
+  console.log(token)
   return Cookies.set("token", token);
 }
 export function getToken() {

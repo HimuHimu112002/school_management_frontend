@@ -1,7 +1,7 @@
 const SelectStudentClass = () => {
   return (
     <div className="w-full mb-5">
-      <h3 className="mb-4 text-3xl font-serif">Select student class</h3>
+      <h3 className="mb-4 text-xl font-serif">Select student class</h3>
       <select className="select select-bordered max-w-xs w-full">
         <option disabled selected>
           Select Class

@@ -2,26 +2,22 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getToken } from "../utility/storageUtility";
-
+const AxiosHeader = { headers: { token: getToken() } };
+console.log("axios", getToken())
 const PersonalAdminProfile = () => {
-  let token = getToken();
   let [adminData, setAdminData] = useState([]);
   useEffect(() => {
     async function singleAdmin() {
-      let data = await axios.get(`http://localhost:4000/api/v1/getAdmin`,{
-        headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            admin_id: "6732faac838a404ac8cbcc0f",
-        },
-      });
-      console.log("hello",data)
+      let data = await axios.get(
+        `http://localhost:4000/api/v1/getAdmin`,
+        AxiosHeader
+      );
       setAdminData(data.data.data);
     }
     singleAdmin();
-  }, [adminData]);
+  }, []);
   return (
-    <div className="my-10">
+    <div className="my-10 animate-slideIn">
       <div className="w-2/4 m-auto p-5 bg-gray-900 rounded">
         <div className="w-24 h-24 rounded-full mx-auto flex justify-center items-center">
           <img
@@ -71,8 +67,8 @@ const PersonalAdminProfile = () => {
             <h1 className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3">
               {adminData?.AdminStatus}
             </h1>
-            <Link to={`/updateAdminProfile/${adminData._id}`}>
-              <button className="btn btn-success w-full text-white text-xl mt-6 ">
+            <Link to={`/updateAdminProfile/${adminData?._id}`}>
+              <button className="btn btn-secondary w-full text-white text-xl mt-6 ">
                 Update profile
               </button>
             </Link>
