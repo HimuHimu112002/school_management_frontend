@@ -22,6 +22,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import AllAdminProfile from "./pages/AllAdminProfile";
 import UpdateAdmin from "./pages/UpdateAdmin";
 import HomePage from "./pages/HomePage";
+import PersonalAdmin from "./pages/PersonalAdmin";
 
 let router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,6 +43,7 @@ let router = createBrowserRouter(
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/adminProfile/:id" element={<AllAdminProfile />}></Route>
         <Route path="/updateAdminProfile/:id" element={<UpdateAdmin />}></Route>
+        <Route path="/PersonalAdminProfile" element={<PersonalAdmin />}></Route>
       </Route>
       <Route path="/sign-in" element={<SignIn />}></Route>
       <Route path="/forgot" element={<ForgotPassword />}></Route>

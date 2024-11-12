@@ -3,6 +3,7 @@ import { useState } from "react";
 import Spinner from "../spinner/Spinner";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../features/api/SuperAdminapiSlice";
+import { setToken, setUserRoll } from "../utility/storageUtility";
 const SignIn = () => {
   let navigate = useNavigate();
   let [loading, setloading] = useState(false);
@@ -11,6 +12,7 @@ const SignIn = () => {
 
   // RTK query POST data successfull start ------
   const [loginData, { isError }] = useLoginMutation();
+
   if (isError)
     return (
       <div className="h-screen flex justify-center items-center">
@@ -30,6 +32,8 @@ const SignIn = () => {
         userEmail: userEmail,
         userPassword: userPass,
       }).unwrap();
+      setUserRoll(res.roll)
+      setToken(res.token)
       if (res["status"] === "success") {
         toast.success(res.message);
         setTimeout(() => {

@@ -4,11 +4,30 @@ import { GrUpdate } from "react-icons/gr";
 import { IoMdLogOut } from "react-icons/io";
 import { MdAppRegistration } from "react-icons/md";
 import { SiGoogleclassroom } from "react-icons/si";
-import { Link, Outlet } from "react-router-dom";
-
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { clearToken, GetUserRoll } from "../utility/storageUtility";
+import { ToastContainer, toast } from "react-toastify";
 const LeftSideBar = () => {
+  let navigate = useNavigate();
+
+  let handleSuper = () => {
+    let roll = GetUserRoll();
+    if (roll === "Super-Admin") {
+      navigate(`/super-xyz`);
+    } else {
+      //toast.success("Access only for super-admin");
+      navigate(`/`);
+    }
+  };
+
+  let handleLogout = () => {
+    clearToken();
+    navigate("/sign-in");
+  };
+
   return (
     <div className="flex gap-x-4">
+      <ToastContainer position="top-right" theme="light" />
       <div className="w-1/4 shadow-lg border">
         <ul>
           <Link to="/S-signUp">
@@ -83,21 +102,21 @@ const LeftSideBar = () => {
             <FaChartLine className="mt-1 mr-4" />
             Success Chart
           </li>
-
-          <Link to="/super-xyz">
-            <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
-              <FaUserLock className="mt-1 mr-4" />
-              Super Admin
-            </li>
-          </Link>
+          <li
+            onClick={handleSuper}
+            className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5"
+          >
+            <FaUserLock className="mt-1 mr-4" />
+            Super Admin
+          </li>
         </ul>
-
-        <Link to="/sign-in">
-          <h1 className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
-            <IoMdLogOut className="mt-1 mr-4" />
-            LoOut
-          </h1>
-        </Link>
+        <h1
+          onClick={handleLogout}
+          className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5"
+        >
+          <IoMdLogOut className="mt-1 mr-4" />
+          LoOut
+        </h1>
       </div>
       <div className="w-3/4 shadow-lg border">
         <Outlet />

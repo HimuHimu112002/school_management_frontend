@@ -55,7 +55,6 @@ const UpdateAdminProfile = () => {
       },
       { headers }
     );
-    console.log(res.data);
     if (res.data["status"] != "success") {
       toast.success(res.data.message);
       setTimeout(() => {
