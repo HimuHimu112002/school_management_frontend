@@ -32,7 +32,6 @@ const SignIn = () => {
         userEmail: userEmail,
         userPassword: userPass,
       }).unwrap();
-      console.log(res.token)
       setUserRoll(res.roll)
       setToken(res.token)
       if (res["status"] === "success") {

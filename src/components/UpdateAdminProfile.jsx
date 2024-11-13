@@ -13,13 +13,19 @@ const UpdateAdminProfile = () => {
     AdminNid: "",
     AdminBio: "",
     AdminAddress: "",
+    AdminImage: "",
     AdminPhone: "",
     AdminEmail: "",
   });
   let handleFromdata = (e) => {
-    setFromData({ ...fromData, [e.target.name]: e.target.value });
+    const { files } = e.target;
+    setFromData({
+      ...fromData,
+      [e.target.name]: files ? files[0] : e.target.value,
+    });
   };
 
+  // get data
   useEffect(() => {
     const headers = {
       user_id: `${params.id}`,
@@ -40,8 +46,10 @@ const UpdateAdminProfile = () => {
   let handleSuperAdminData = async () => {
     setloading(true);
     const headers = {
+      method: "post",
+      maxBodyLength: Infinity,
       user_id: `${params.id}`,
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     };
     let res = await axios.post(
       "http://localhost:4000/api/v1/update-admin",
@@ -50,6 +58,7 @@ const UpdateAdminProfile = () => {
         AdminNid: fromData.AdminNid,
         AdminBio: fromData.AdminBio,
         AdminAddress: fromData.AdminAddress,
+        AdminImage: fromData.AdminImage,
         AdminPhone: fromData.AdminPhone,
         AdminEmail: fromData.AdminEmail,
       },
@@ -67,80 +76,91 @@ const UpdateAdminProfile = () => {
       }, 2000);
     }
   };
-
   return (
     <div className="my-10 animate-slideIn">
       <ToastContainer position="top-right" theme="light" />
       <div className="m-auto px-3 shadow-lg rounded-md mt-20 border">
-        <div className="relative w-24 h-24 rounded-full mx-auto flex justify-center items-center border border-gray-600 p-1">
-          <img
-            className="w-100 h-100 rounded-full"
-            src="https://img.daisyui.com/images/profile/demo/5@94.webp"
-            alt="profile"
-          ></img>
+        {/* <div
+           onClick={handleIconClick}
+          className="relative w-24 h-24 rounded-full mx-auto flex justify-center items-center border border-gray-600 p-1"
+        >
+          <img src={fromData.AdminImage} />
+          <img src={`http://localhost:4000/uploads/${fromData.AdminImage}`} />
           <CiCamera className="text-4xl absolute right-0 bottom-0 cursor-pointer" />
-        </div>
-        <div>
-          <div className="p-6 rounded-md grid gap-y-2 gap-x-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-auto">
-            <input
-              type="text"
-              name="AdminName"
-              value={fromData.AdminName}
-              onChange={handleFromdata}
-              placeholder="Admin Name"
-              className="input input-bordered w-full max-w-xs"
-            />
-            <input
-              type="text"
-              value={fromData.AdminNid}
-              name="AdminNid"
-              onChange={handleFromdata}
-              placeholder="Admin N-id"
-              className="input input-bordered w-full max-w-xs"
-            />
-            <input
-              type="text"
-              value={fromData.AdminBio}
-              name="AdminBio"
-              onChange={handleFromdata}
-              placeholder="Admin Bio"
-              className="input input-bordered w-full max-w-xs"
-            />
-            <input
-              type="text"
-              value={fromData.AdminAddress}
-              name="AdminAddress"
-              onChange={handleFromdata}
-              placeholder="Admin Address"
-              className="input input-bordered w-full max-w-xs"
-            />
-            <input
-              type="text"
-              value={fromData.AdminPhone}
-              name="AdminPhone"
-              onChange={handleFromdata}
-              placeholder="Admin Phone Number"
-              className="input input-bordered w-full max-w-xs"
-            />
-            <input
-              type="email"
-              value={fromData.AdminEmail}
-              name="AdminEmail"
-              onChange={handleFromdata}
-              placeholder="Admin Email"
-              className="input input-bordered w-full max-w-xs"
-            />
-            {loading ? (
-              <Spinner />
-            ) : (
-              <button
-                onClick={handleSuperAdminData}
-                className="btn btn-secondary"
-              >
-                Submit
-              </button>
-            )}
-          </div>
+          <input
+            type="file"
+            name="AdminImage"
+            onChange={handleFromdata}
+            //style={{ display: "none" }}
+          />
+        </div> */}
+        {/* <img src={fromData.AdminImage} /> */}
+        <img src={`http://localhost:4000/uploads/${fromData.AdminImage}`} />
+        <div className="p-6 rounded-md grid gap-y-2 gap-x-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-auto">
+          <input
+            type="file"
+            name="AdminImage"
+            onChange={handleFromdata}
+            //style={{ display: "none" }}
+          />
+          <input
+            type="text"
+            name="AdminName"
+            value={fromData.AdminName}
+            onChange={handleFromdata}
+            placeholder="Admin Name"
+            className="input input-bordered w-full max-w-xs"
+          />
+          <input
+            type="text"
+            value={fromData.AdminNid}
+            name="AdminNid"
+            onChange={handleFromdata}
+            placeholder="Admin N-id"
+            className="input input-bordered w-full max-w-xs"
+          />
+          <input
+            type="text"
+            value={fromData.AdminBio}
+            name="AdminBio"
+            onChange={handleFromdata}
+            placeholder="Admin Bio"
+            className="input input-bordered w-full max-w-xs"
+          />
+          <input
+            type="text"
+            value={fromData.AdminAddress}
+            name="AdminAddress"
+            onChange={handleFromdata}
+            placeholder="Admin Address"
+            className="input input-bordered w-full max-w-xs"
+          />
+          <input
+            type="text"
+            value={fromData.AdminPhone}
+            name="AdminPhone"
+            onChange={handleFromdata}
+            placeholder="Admin Phone Number"
+            className="input input-bordered w-full max-w-xs"
+          />
+          <input
+            type="email"
+            value={fromData.AdminEmail}
+            name="AdminEmail"
+            onChange={handleFromdata}
+            placeholder="Admin Email"
+            className="input input-bordered w-full max-w-xs"
+          />
+          {loading ? (
+            <Spinner />
+          ) : (
+            <button
+              onClick={handleSuperAdminData}
+              className="btn btn-secondary"
+            >
+              Submit
+            </button>
+          )}
         </div>
       </div>
     </div>

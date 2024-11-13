@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getToken } from "../utility/storageUtility";
 const AxiosHeader = { headers: { token: getToken() } };
-console.log("axios", getToken())
+
 const PersonalAdminProfile = () => {
   let [adminData, setAdminData] = useState([]);
   useEffect(() => {
