@@ -67,12 +67,12 @@ const AdminProfile = () => {
             </h1>
 
             <Link to={`/super-xyz`}>
-              <button className="btn btn-success w-full text-white text-xl mt-6 ">
+              <button className="btn btn-secondary w-full text-white text-xl mt-6 ">
                 Back
               </button>
             </Link>
             <Link to={`/updateAdminProfile/${adminData._id}`}>
-              <button className="btn btn-success w-full text-white text-xl mt-6 ">
+              <button className="btn btn-secondary w-full text-white text-xl mt-6 ">
                 Update profile
               </button>
             </Link>

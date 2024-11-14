@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
-import { useGetSuperAdminQuery } from "../features/api/SuperAdminapiSlice";
-import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
+import {
+  useGetSuperAdminQuery,
+  useUpdateSuperAdminMutation,
+} from "../features/api/SuperAdminapiSlice";
 import Spinner from "../spinner/Spinner";
 import ProfileSkeleton from "../skeleton/ProfileSkeleton";
 import AdminForm from "./AdminForm";
 import AllAdminInfo from "./AllAdminInfo";
+import handleResponse from "../Response/handleResponse";
+import { getToken } from "../utility/storageUtility";
 
 const SuperAdminForm = () => {
   let [loading, setloading] = useState(false);
 
-  // super admin data get successfull start ----------------
+  // RTK query POST data successfull start ------
+  const [postData, { isError }] = useUpdateSuperAdminMutation();
+
+  // super admin form data get successfull start ----------------
   const [fromData, setFromData] = useState({
     AdminName: "",
     AdminNid: "",
@@ -41,51 +47,37 @@ const SuperAdminForm = () => {
       });
     }
   }, [adminData]);
-  
   if (adminIsLoading)
     return (
       <div className="h-screen flex justify-center items-center">
         Loading...
       </div>
     );
+  if (isError)
+    return (
+      <div className="h-screen flex justify-center items-center">
+        Data loading failed try agai.
+      </div>
+    );
   // super admin data get successfull end ----------------
 
   // super admin data update successfull start ----------------
-
   let handleSuperAdminData = async () => {
-    setloading(true);
-    const headers = {
-      user_id: "67264cb55bbc3c2fde8564ae",
-      "Content-Type": "application/json",
+    let token = getToken();
+    const updateData = {
+      AdminName: fromData.AdminName,
+      AdminNid: fromData.AdminNid,
+      AdminBio: fromData.AdminBio,
+      AdminAddress: fromData.AdminAddress,
+      AdminPhone: fromData.AdminPhone,
+      AdminEmail: fromData.AdminEmail,
     };
-    let res = await axios.post(
-      "http://localhost:4000/api/v1/update-super-admin",
-      {
-        AdminName: fromData.AdminName,
-        AdminNid: fromData.AdminNid,
-        AdminBio: fromData.AdminBio,
-        AdminAddress: fromData.AdminAddress,
-        AdminPhone: fromData.AdminPhone,
-        AdminEmail: fromData.AdminEmail,
-      },
-      { headers }
-    );
-    if (res.data["status"] != "success") {
-      toast.success(res.data.message);
-      setTimeout(() => {
-        setloading(false);
-      }, 2000);
-    } else if (res.data["status"] === "success") {
-      toast.success(res.data.message);
-      setTimeout(() => {
-        setloading(false);
-      }, 2000);
-    }
+    let res = await postData({ data: updateData, token }).unwrap();
+    handleResponse(res, setloading);
   };
   // super admin data update successfull end ----------------
   return (
     <div className="mt-5 animate-slideIn">
-      <ToastContainer position="top-right" theme="light" />
       <h1 className="text-center text-3xl font-serif">Main Authority</h1>
       <div className="my-6">
         {adminError ? (
@@ -158,8 +150,8 @@ const SuperAdminForm = () => {
         <h1 className="text-center text-3xl font-serif mt-24 mb-2">
           Add new admin
         </h1>
-        <AdminForm/>
-        <AllAdminInfo/>
+        <AdminForm />
+        <AllAdminInfo />
       </div>
     </div>
   );

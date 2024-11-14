@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import Spinner from "../spinner/Spinner";
-import axios from "axios";
+import handleResponse from "../Response/handleResponse";
+import { useCreateAdminMutation } from "../features/api/AdminSlice";
 
 const AdminForm = () => {
   let [loading, setloading] = useState(false);
+  const [postData, { isError }] = useCreateAdminMutation();
 
   // admin data POST successfull start ----------------
   let [fromData, setFromData] = useState({
@@ -14,32 +16,25 @@ const AdminForm = () => {
     AdminAddress: "",
     AdminPhone: "",
     AdminEmail: "",
-    AdminPassword: "",
   });
+
   let handleCreateAdmin = async () => {
-    setloading(true);
-    let res = await axios.post("http://localhost:4000/api/v1/save-admin", {
+    const res = await postData({
       AdminName: fromData.AdminName,
       AdminNid: fromData.AdminNid,
       AdminBio: fromData.AdminBio,
       AdminAddress: fromData.AdminAddress,
       AdminPhone: fromData.AdminPhone,
       AdminEmail: fromData.AdminEmail,
-      AdminPassword: fromData.AdminPassword,
-    });
-    console.log(res.data);
-    if (res.data["status"] === "success") {
-      toast.success(res.data.message);
-      setTimeout(() => {
-        setloading(false);
-      }, 2000);
-    } else if (res.data["status"] != "success") {
-      toast.success(res.data.message);
-      setTimeout(() => {
-        setloading(false);
-      }, 2000);
-    }
+    }).unwrap();
+    handleResponse(res, setloading);
   };
+  if (isError)
+    return (
+      <div className="h-screen flex justify-center items-center">
+        Data loading failed try agai.
+      </div>
+    );
   return (
     <div>
       <ToastContainer position="top-right" theme="light" />

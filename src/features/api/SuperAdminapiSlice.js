@@ -22,12 +22,12 @@ export const SuperAdminapiSlice = createApi({
       }),
     }),
     updateSuperAdmin: builder.mutation({
-      query: (data, headers) => ({
+      query: ({data, token}) => ({
         url: "/update-super-admin",
         method: "POST",
         body: data,
         headers: {
-          user_id: `${headers}`,
+          token: `${token}`,
           "Content-Type": "application/json",
         },
       }),

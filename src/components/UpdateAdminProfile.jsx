@@ -2,12 +2,19 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import Spinner from "../spinner/Spinner";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { CiCamera } from "react-icons/ci";
+import handleResponse from "../Response/handleResponse";
+import {
+  useGetSingleAdminQuery,
+  useUpdateAdminMutation,
+} from "../features/api/AdminSlice";
 const UpdateAdminProfile = () => {
   let params = useParams();
+  // let id = params.id;
+  // RTK query POST data successfull start ------
+  //const [postData, { isError }] = useUpdateAdminMutation();
   let [loading, setloading] = useState(false);
-
   const [fromData, setFromData] = useState({
     AdminName: "",
     AdminNid: "",
@@ -17,6 +24,7 @@ const UpdateAdminProfile = () => {
     AdminPhone: "",
     AdminEmail: "",
   });
+  console.log(fromData);
   let handleFromdata = (e) => {
     const { files } = e.target;
     setFromData({
@@ -44,11 +52,22 @@ const UpdateAdminProfile = () => {
   }, []);
 
   let handleSuperAdminData = async () => {
+    // const updateData = {
+    //   AdminName: fromData.AdminName,
+    //   AdminNid: fromData.AdminNid,
+    //   AdminBio: fromData.AdminBio,
+    //   AdminAddress: fromData.AdminAddress,
+    //   AdminImage: fromData.AdminImage,
+    //   AdminPhone: fromData.AdminPhone,
+    //   AdminEmail: fromData.AdminEmail,
+    // };
+    // let res = await postData({ data: updateData, id }).unwrap();
+
     setloading(true);
     const headers = {
       method: "post",
+      user_id: params.id,
       maxBodyLength: Infinity,
-      user_id: `${params.id}`,
       "Content-Type": "multipart/form-data",
     };
     let res = await axios.post(
@@ -64,6 +83,7 @@ const UpdateAdminProfile = () => {
       },
       { headers }
     );
+
     if (res.data["status"] != "success") {
       toast.success(res.data.message);
       setTimeout(() => {
@@ -75,34 +95,23 @@ const UpdateAdminProfile = () => {
         setloading(false);
       }, 2000);
     }
+    //handleResponse(res, setloading);
   };
   return (
     <div className="my-10 animate-slideIn">
       <ToastContainer position="top-right" theme="light" />
       <div className="m-auto px-3 shadow-lg rounded-md mt-20 border">
-        {/* <div
-           onClick={handleIconClick}
-          className="relative w-24 h-24 rounded-full mx-auto flex justify-center items-center border border-gray-600 p-1"
-        >
-          <img src={fromData.AdminImage} />
-          <img src={`http://localhost:4000/uploads/${fromData.AdminImage}`} />
+        <div className="relative w-24 h-24 rounded-full mx-auto flex justify-center items-center border border-gray-600 p-1">
+          <img
+            className=" w-full h-full rounded-lg"
+            src={fromData.AdminImage}
+          />
           <CiCamera className="text-4xl absolute right-0 bottom-0 cursor-pointer" />
-          <input
-            type="file"
-            name="AdminImage"
-            onChange={handleFromdata}
-            //style={{ display: "none" }}
-          />
-        </div> */}
-        {/* <img src={fromData.AdminImage} /> */}
-        <img src={`http://localhost:4000/uploads/${fromData.AdminImage}`} />
+        </div>
+
+        {/* <img className="w-full h-full" src={`http://localhost:4000/uploads/${fromData.AdminImage}`} /> */}
         <div className="p-6 rounded-md grid gap-y-2 gap-x-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-auto">
-          <input
-            type="file"
-            name="AdminImage"
-            onChange={handleFromdata}
-            //style={{ display: "none" }}
-          />
+          <input type="file" name="AdminImage" onChange={handleFromdata} />
           <input
             type="text"
             name="AdminName"
@@ -161,6 +170,13 @@ const UpdateAdminProfile = () => {
               Submit
             </button>
           )}
+          <Link to="/super-xyz">
+            <button
+              className="btn btn-secondary w-full"
+            >
+              Back
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,54 +1,29 @@
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
 import { useState } from "react";
 import Spinner from "../spinner/Spinner";
 import { Link, useNavigate } from "react-router-dom";
 import { useForgotPasswordMutation } from "../features/api/SuperAdminapiSlice";
+import handleResponse from "../Response/handleResponse";
 
 const ForgotPass = () => {
   let navigate = useNavigate();
   let [loading, setloading] = useState(false);
   let [userEmail, setUserEmail] = useState("");
   let [userPass, setUserPass] = useState("");
-
   // RTK query POST data successfull start ------
-  const [postData, { isError }] =
-    useForgotPasswordMutation();
+  const [postData, { isError }] = useForgotPasswordMutation();
   if (isError)
     return (
       <div className="h-screen flex justify-center items-center">
-        Data loading failed reload the window browser
-        and try agai.
+        Data loading failed reload the window browser and try agai.
       </div>
     );
-  let handleFromdata = async (e) => {
-    setUserEmail(e.target.value);
-  };
-  let handleFromdataPass = (e) => {
-    setUserPass(e.target.value);
-  };
-
   let handleForgot = async () => {
-    setloading(true);
-    try {
-      const res = await postData({
-        userEmail: userEmail,
-        userPassword: userPass,
-      }).unwrap();
-      if (res["status"] === "success") {
-        toast.success(res.message);
-        setTimeout(() => {
-          navigate("/sign-in");
-          setloading(false);
-        }, 2000);
-      } else if (res["status"] != "success") {
-        toast.success(res.message);
-        setTimeout(() => {
-          setloading(false);
-        }, 2000);
-      }
-    } catch (error) {
-      toast.success(error);
-    }
+    const res = await postData({
+      userEmail: userEmail,
+      userPassword: userPass,
+    }).unwrap();
+    handleResponse(res, setloading, navigate);
   };
   return (
     <div className="flex justify-center items-center h-screen">
@@ -61,14 +36,14 @@ const ForgotPass = () => {
         <input
           type="email"
           placeholder="Email"
-          onChange={handleFromdata}
+          onChange={(e) => setUserEmail(e.target.value)}
           className="input input-bordered w-full mb-5"
         />
         <p className="text-xl font-serif mb-2">Enter password</p>
         <input
           type="password"
           placeholder="Password"
-          onChange={handleFromdataPass}
+          onChange={(e) => setUserPass(e.target.value)}
           className="input input-bordered w-full"
         />
         <Link to="/sign-in">

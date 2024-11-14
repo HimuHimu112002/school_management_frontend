@@ -5,15 +5,24 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { socket } from "../socket/socket";
 import { Link, useNavigate } from "react-router-dom";
+//import { useGetAdmindataQuery } from "../features/api/AdminSlice";
+
 const AllAdminInfo = () => {
   let navigate = useNavigate();
-  // RTK query fetch data get successfull start ----------------
+  let [admin, setAdmin] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage, setItemsPerPage] = useState(2);
+  const [totalPages, setTotalPages] = useState(0);
+ // RTK query fetch data get successfull start ----------------
   // const {
-  //   data: item,
+  //   data:adminData,
   //   error: adminError,
   //   isLoading: adminIsLoading,
-  // } = useGetAdmindataQuery();
-  // console.log(item)
+  // } = useGetAdmindataQuery({
+  //   page: currentPage,
+  //   perPage,
+  // });
+  // console.log(adminData?.admins)
   // if (adminIsLoading)
   //   return (
   //     <div className="h-screen flex justify-center items-center">
@@ -23,13 +32,9 @@ const AllAdminInfo = () => {
   // if (adminError)
   //   return (
   //     <div className="h-screen flex justify-center items-center">
-  //       Loading...
+  //       Data load failed ...
   //     </div>
   //   );
-  let [admin, setAdmin] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [perPage, setItemsPerPage] = useState(2);
-  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     async function allAdmin() {
@@ -46,7 +51,7 @@ const AllAdminInfo = () => {
     }
     allAdmin();
   }, [currentPage, perPage]);
-  // super admin data get successfull end ----------------
+  // admin data get successfull end ----------------
 
   // admin data delete with socket start ----------------
   let handleDelete = (id, user) => {
@@ -62,12 +67,13 @@ const AllAdminInfo = () => {
     });
     socket.on("deleteAdminUser");
   };
-  // admin data delete with socket end ----------------
 
+  // view admin profile
   let handleViewProfile = (id) => {
     navigate(`/adminProfile/${id}`);
   };
 
+  // admin status change using socket.io
   let handleStatusChange = (id, value, item) => {
     socket.emit("adminStatus", id, value, item.user);
     socket.on("updateAdminStatus");
@@ -172,5 +178,4 @@ const AllAdminInfo = () => {
     </>
   );
 };
-
 export default AllAdminInfo;
