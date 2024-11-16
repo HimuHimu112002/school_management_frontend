@@ -1,9 +1,10 @@
 import AddNewStudent from "../components/AddNewStudent";
+import Loader from "../loader/Loader";
 const StudentSignUp = () => {
   return (
-    <div className="p-10">
+    <Loader delay={500}>
       <AddNewStudent />
-    </div>
+    </Loader>
   );
 };
 export default StudentSignUp;
