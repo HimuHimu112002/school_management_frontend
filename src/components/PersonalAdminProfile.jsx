@@ -6,6 +6,7 @@ const AxiosHeader = { headers: { token: getToken() } };
 
 const PersonalAdminProfile = () => {
   let [adminData, setAdminData] = useState([]);
+
   useEffect(() => {
     async function singleAdmin() {
       let data = await axios.get(
@@ -21,8 +22,8 @@ const PersonalAdminProfile = () => {
       <div className="w-2/4 m-auto p-5 bg-gray-900 rounded">
         <div className="w-24 h-24 rounded-full mx-auto flex justify-center items-center">
           <img
-            className="w-100 h-100 rounded-full"
-            src="https://img.daisyui.com/images/profile/demo/5@94.webp"
+            className="w-full h-full rounded-full"
+            src={`http://localhost:4000/api/v1/images/${adminData.AdminImage}`}
             alt="profile"
           ></img>
         </div>

@@ -10,7 +10,7 @@ const TopBar = () => {
     navigate("/sign-in");
   };
   return (
-    <div className="bg-[#F100B7] w-full h-20 flex justify-between">
+    <div className="bg-[#F100B7] w-full h-20 flex justify-between sticky top-0 z-10">
       <ToastContainer position="top-right" theme="light" />
       <div className="w-[50%] flex justify-start items-center px-6 text-4xl font-serif text-white">
         <Link to="/">E-school</Link>

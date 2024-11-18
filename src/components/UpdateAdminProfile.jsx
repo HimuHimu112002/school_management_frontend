@@ -9,6 +9,7 @@ import {
   useGetSingleAdminQuery,
   useUpdateAdminMutation,
 } from "../features/api/AdminSlice";
+
 const UpdateAdminProfile = () => {
   let params = useParams();
   // let id = params.id;
@@ -24,7 +25,6 @@ const UpdateAdminProfile = () => {
     AdminPhone: "",
     AdminEmail: "",
   });
-  console.log(fromData);
   let handleFromdata = (e) => {
     const { files } = e.target;
     setFromData({
@@ -63,6 +63,8 @@ const UpdateAdminProfile = () => {
     // };
     // let res = await postData({ data: updateData, id }).unwrap();
 
+    //const postImage = dataUriToBlob(fromData.AdminImage)
+
     setloading(true);
     const headers = {
       method: "post",
@@ -99,17 +101,16 @@ const UpdateAdminProfile = () => {
   };
   return (
     <div className="my-10 animate-slideIn">
-      <ToastContainer position="top-right" theme="light" />
+      <ToastContainer position="bottom-right" theme="light" />
       <div className="m-auto px-3 shadow-lg rounded-md mt-20 border">
         <div className="relative w-24 h-24 rounded-full mx-auto flex justify-center items-center border border-gray-600 p-1">
           <img
-            className=" w-full h-full rounded-lg"
-            src={fromData.AdminImage}
+            className="w-full h-full rounded-full"
+            src={`http://localhost:4000/api/v1/images/${fromData.AdminImage}`}
           />
+
           <CiCamera className="text-4xl absolute right-0 bottom-0 cursor-pointer" />
         </div>
-
-        {/* <img className="w-full h-full" src={`http://localhost:4000/uploads/${fromData.AdminImage}`} /> */}
         <div className="p-6 rounded-md grid gap-y-2 gap-x-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-auto">
           <input type="file" name="AdminImage" onChange={handleFromdata} />
           <input
@@ -171,11 +172,7 @@ const UpdateAdminProfile = () => {
             </button>
           )}
           <Link to="/super-xyz">
-            <button
-              className="btn btn-secondary w-full"
-            >
-              Back
-            </button>
+            <button className="btn btn-secondary w-full">Back</button>
           </Link>
         </div>
       </div>
