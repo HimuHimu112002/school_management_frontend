@@ -43,8 +43,8 @@ export const AdminSlice = createApi({
         headers: {
           user_id: `${id}`,
           //maxBodyLength: Infinity,
-          //"Content-Type": "multipart/form-data",
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+          //"Content-Type": "application/json",
         },
       }),
       //invalidatesTags: ["Admin"],

@@ -23,6 +23,7 @@ import AllAdminProfile from "./pages/AllAdminProfile";
 import UpdateAdmin from "./pages/UpdateAdmin";
 import HomePage from "./pages/HomePage";
 import PersonalAdmin from "./pages/PersonalAdmin";
+import Chart from "./pages/Chart";
 
 let router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,6 +42,7 @@ let router = createBrowserRouter(
         <Route path="/update-roll" element={<UpdateRoll />}></Route>
         <Route path="/super-xyz" element={<SuperAdmin />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/cart" element={< Chart/>}></Route>
         <Route path="/adminProfile/:id" element={<AllAdminProfile />}></Route>
         <Route path="/updateAdminProfile/:id" element={<UpdateAdmin />}></Route>
         <Route path="/PersonalAdminProfile" element={<PersonalAdmin />}></Route>

@@ -96,11 +96,12 @@ const LeftSideBar = () => {
               Exam Room
             </li>
           </Link>
-
-          <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
-            <FaChartLine className="mt-1 mr-4" />
-            Success Chart
-          </li>
+          <Link to="/cart">
+            <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
+              <FaChartLine className="mt-1 mr-4" />
+              Success Chart
+            </li>
+          </Link>
           <li
             onClick={handleSuper}
             className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5"

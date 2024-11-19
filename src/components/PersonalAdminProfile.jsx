@@ -6,7 +6,6 @@ const AxiosHeader = { headers: { token: getToken() } };
 
 const PersonalAdminProfile = () => {
   let [adminData, setAdminData] = useState([]);
-
   useEffect(() => {
     async function singleAdmin() {
       let data = await axios.get(
@@ -21,11 +20,15 @@ const PersonalAdminProfile = () => {
     <div className="my-10 animate-slideIn">
       <div className="w-2/4 m-auto p-5 bg-gray-900 rounded">
         <div className="w-24 h-24 rounded-full mx-auto flex justify-center items-center">
-          <img
-            className="w-full h-full rounded-full"
-            src={`http://localhost:4000/api/v1/images/${adminData.AdminImage}`}
-            alt="profile"
-          ></img>
+          {adminData?.AdminImage ? (
+            <img
+              className="w-full h-full rounded-full"
+              src={`http://localhost:4000/api/v1/images/${adminData?.AdminImage}`}
+              alt="profile"
+            />
+          ) : (
+            <img className="w-full h-full rounded-full" src="image/test.jpg" />
+          )}
         </div>
         <div className="shadow-lg p-6 rounded-md">
           <>

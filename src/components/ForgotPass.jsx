@@ -28,7 +28,7 @@ const ForgotPass = () => {
   return (
     <div className="flex justify-center items-center h-screen">
       <ToastContainer position="top-right" theme="light" />
-      <div className="w-auto lg:w-2/6 mx-auto shadow-xl border border-red-300 p-10 rounded-lg">
+      <div className="w-auto lg:w-2/6 mx-auto shadow-xl border border-secondary p-10 rounded-lg">
         <h1 className="text-center text-3xl font-serif mb-3">
           Forgot Password
         </h1>
@@ -37,14 +37,14 @@ const ForgotPass = () => {
           type="email"
           placeholder="Email"
           onChange={(e) => setUserEmail(e.target.value)}
-          className="input input-bordered w-full mb-5"
+          className="focus:outline-none focus:border-secondary input input-bordered w-full mb-5"
         />
         <p className="text-xl font-serif mb-2">Enter password</p>
         <input
           type="password"
           placeholder="Password"
           onChange={(e) => setUserPass(e.target.value)}
-          className="input input-bordered w-full"
+          className="focus:outline-none focus:border-secondary input input-bordered w-full"
         />
         <Link to="/sign-in">
           <p className="text-red-500 text-sm my-2 cursor-pointer">Login</p>
