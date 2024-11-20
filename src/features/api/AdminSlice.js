@@ -2,39 +2,19 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const AdminSlice = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/api/v1" }),
-  tagTypes: ["Admin"],
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/api/v1"}),
+  //tagTypes: ['Admin'],
   endpoints: (builder) => ({
-    getAdmindata: builder.query({
-      query: ({ currentPage, perPage }) =>
-        `get-admin/${currentPage}/${perPage}`,
-      transformResponse: (response) => ({
-        admins: response.data[0].Rows,
-        totalPages: response.totalPages,
-        perPage: response.perPage,
-      }),
-    }),
-
-    getSingleAdmin: builder.query({
-      query: (id) => ({
-        url: `/getSingleAdmin`,
-        method: "GET",
-        headers: {
-          user_id: id,
-        },
-        transformResponse: (response) => response.data,
-      }),
-    }),
-
+    // done create admin with rtk
     createAdmin: builder.mutation({
       query: (data) => ({
         url: "/save-admin",
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Admin"],
+      //invalidatesTags: [{ type: 'Admin' }] 
     }),
-
+    // done update admin with rtk
     updateAdmin: builder.mutation({
       query: ({ data, id }) => ({
         url: "/update-admin",
@@ -42,19 +22,46 @@ export const AdminSlice = createApi({
         body: data,
         headers: {
           user_id: `${id}`,
-          //maxBodyLength: Infinity,
-          "Content-Type": "multipart/form-data",
-          //"Content-Type": "application/json",
         },
       }),
       //invalidatesTags: ["Admin"],
     }),
+    // done get admin profile with rtk
+    getSuperAdmin: builder.query({
+      query: (token) => ({
+        url: `/getAdmin`,
+        method: "GET",
+        headers: {
+          token: `${token}`,
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
+
+    getAdminProfile: builder.query({
+      query: (id) => ({
+        url: `/admin-profile/${id}`,
+        method: "GET",
+      }),
+    })
+    
+    // done get admin with rtk
+    // getSuperAdmin: builder.query({
+    //   query: (id) => ({
+    //     url: `/getSingleAdmin`,
+    //     method: "GET",
+    //     headers: {
+    //       id: `${id}`,
+    //       "Content-Type": "application/json",
+    //     },
+    //   }),
+    // }),
   }),
 });
 export const {
-  useGetAdmindataQuery,
-  useGetSingleAdminQuery ,
+  useGetSuperAdminQuery,
+  useGetAdminDataQuery,
+  useGetAdminProfileQuery,
   useCreateAdminMutation,
   useUpdateAdminMutation,
-
 } = AdminSlice;

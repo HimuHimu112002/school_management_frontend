@@ -9,16 +9,16 @@ import { clearToken, GetUserRoll } from "../utility/storageUtility";
 import { toast } from "react-toastify";
 const LeftSideBar = () => {
   let navigate = useNavigate();
+  let roll = GetUserRoll();
 
-  let handleSuper = () => {
-    let roll = GetUserRoll();
-    if (roll === "Super-Admin") {
-      navigate(`/super-xyz`);
-    } else {
-      toast.success("Access only for super-admin");
-      navigate(`/`);
-    }
-  };
+  // let handleSuper = () => {
+  //   if (roll === "Super-Admin") {
+  //     navigate(`/super-xyz`);
+  //   } else {
+  //     toast.success("Access only for super-admin");
+  //     navigate(`/`);
+  //   }
+  // };
 
   let handleLogout = () => {
     clearToken();
@@ -102,13 +102,14 @@ const LeftSideBar = () => {
               Success Chart
             </li>
           </Link>
-          <li
-            onClick={handleSuper}
-            className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5"
-          >
-            <FaUserLock className="mt-1 mr-4" />
-            Super Admin
-          </li>
+          {roll === "Super-Admin" && (
+            <Link to="super-xyz">
+              <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
+                <FaUserLock className="mt-1 mr-4" />
+                Super Admin
+              </li>
+            </Link>
+          )}
         </ul>
         <h1
           onClick={handleLogout}

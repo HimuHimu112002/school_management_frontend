@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 const AdminProfile = () => {
-  let params = useParams();
+  let {id} = useParams();
   let [adminData, setAdminData] = useState([]);
   useEffect(() => {
     async function singleAdmin() {
       let data = await axios.get(
-        `http://localhost:4000/api/v1/admin-profile/${params.id}`
+        `http://localhost:4000/api/v1/admin-profile/${id}`
       );
       setAdminData(data.data.data);
     }
@@ -18,11 +18,19 @@ const AdminProfile = () => {
     <div className="my-10 animate-slideIn">
       <div className="w-2/4 m-auto p-5 bg-gray-900 rounded">
         <div className="w-24 h-24 rounded-full mx-auto flex justify-center items-center">
-          <img
-            className="w-100 h-100 rounded-full"
-            src="https://img.daisyui.com/images/profile/demo/5@94.webp"
-            alt="profile"
-          ></img>
+          {adminData?.AdminImage ? (
+            <img
+              className="w-full h-full rounded-full"
+              src={adminData?.AdminImage}
+              alt="Avatar Tailwind CSS Component"
+            />
+          ) : (
+            <img
+            className="w-full h-full rounded-full"
+            src="image/test/jpg"
+            alt="Avatar Tailwind CSS Component"
+          />
+          )}
         </div>
         <div className="shadow-lg p-6 rounded-md">
           <>

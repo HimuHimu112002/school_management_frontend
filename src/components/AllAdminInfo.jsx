@@ -13,7 +13,7 @@ const AllAdminInfo = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setItemsPerPage] = useState(2);
   const [totalPages, setTotalPages] = useState(0);
- // RTK query fetch data get successfull start ----------------
+  // RTK query fetch data get successfull start ----------------
   // const {
   //   data:adminData,
   //   error: adminError,
@@ -98,15 +98,24 @@ const AllAdminInfo = () => {
           <tbody className="font-serif">
             {admin.map((item, i) => (
               <tr className="divide-x-2" key={i}>
-                <td>{i+1}</td>
+                <td>{i + 1}</td>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                          alt="Avatar Tailwind CSS Component"
-                        />
+                        {item?.AdminImage ? (
+                          <img
+                            className="w-full h-full rounded-full"
+                            src={item?.AdminImage}
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        ) : (
+                          <img
+                            className="w-full h-full rounded-full"
+                            src="image/test.jpg"
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        )}
                       </div>
                     </div>
                     <div>

@@ -6,7 +6,7 @@ import { useCreateAdminMutation } from "../features/api/AdminSlice";
 
 const AdminForm = () => {
   let [loading, setloading] = useState(false);
-  const [postData, { isError }] = useCreateAdminMutation();
+  const [createAdmin, { isLoading, isError, error }] = useCreateAdminMutation();
 
   // admin data POST successfull start ----------------
   let [fromData, setFromData] = useState({
@@ -19,7 +19,7 @@ const AdminForm = () => {
   });
 
   let handleCreateAdmin = async () => {
-    const res = await postData({
+    const res = await createAdmin({
       AdminName: fromData.AdminName,
       AdminNid: fromData.AdminNid,
       AdminBio: fromData.AdminBio,
@@ -35,9 +35,21 @@ const AdminForm = () => {
         Data loading failed try agai.
       </div>
     );
+  if (isLoading)
+    return (
+      <div className="h-screen flex justify-center items-center">
+        Data loading ..............
+      </div>
+    );
+  if (error)
+    return (
+      <div className="h-screen flex justify-center items-center">
+        Data loading ..............
+      </div>
+    );
   return (
     <div>
-      <ToastContainer position="top-right" theme="light" />
+      <ToastContainer position="bottom-right" theme="light" />
       <div className="shadow-lg p-6 rounded-md grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <input
           type="text"

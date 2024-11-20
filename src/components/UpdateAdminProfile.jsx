@@ -3,43 +3,32 @@ import { useEffect, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import Spinner from "../spinner/Spinner";
 import { Link, useParams } from "react-router-dom";
-import handleResponse from "../Response/handleResponse";
-import {
-  useGetSingleAdminQuery,
-  useUpdateAdminMutation,
-} from "../features/api/AdminSlice";
+//import handleResponse from "../Response/handleResponse";
+import { useUpdateAdminMutation } from "../features/api/AdminSlice";
 import { GetUserRoll } from "../utility/storageUtility";
 import { FaCamera } from "react-icons/fa";
 import Loader from "../loader/Loader";
+import { uploadToCloudinary } from "../utility/singleImageUpload";
 
 const UpdateAdminProfile = () => {
   let roll = GetUserRoll();
   let params = useParams();
-  const fileInputRef = useRef(null);
-  // RTK query POST data successfull start ------
-  //const [postData, { isError }] = useUpdateAdminMutation();
-  let [loading, setloading] = useState(false);
-  const [fromData, setFromData] = useState({
-    AdminName: "",
-    AdminNid: "",
-    AdminBio: "",
-    AdminAddress: "",
-    AdminImage: "",
-    AdminPhone: "",
-    AdminEmail: "",
-  });
-  let handleFromdata = (e) => {
-    const { files } = e.target;
-    setFromData({
-      ...fromData,
-      [e.target.name]: files ? files[0] : e.target.value,
-    });
-  };
 
-  // get data
+  // use for image start
+  const fileInputRef = useRef(null);
+  const [file, setFile] = useState(null);
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+  const handleIconClick = () => {
+    fileInputRef.current.click();
+  };
+  // use for image end
+
+  // RTK query GET data successfull start ------
   useEffect(() => {
     const headers = {
-      user_id: `${params.id}`,
+      id: `${params.id}`,
       "Content-Type": "application/json",
     };
     async function singleAdminData() {
@@ -53,56 +42,42 @@ const UpdateAdminProfile = () => {
     }
     singleAdminData();
   }, []);
-  const [file, setFile] = useState(null);
+  // RTK query GET data successfull start ------
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+  // RTK query POST data successfull start ------
+  let [loading, setloading] = useState(false);
+  const [fromData, setFromData] = useState({
+    AdminName: "",
+    AdminNid: "",
+    AdminBio: "",
+    AdminAddress: "",
+    AdminPhone: "",
+    AdminEmail: "",
+  });
+  let handleFromdata = (e) => {
+    setFromData({ ...fromData, [e.target.name]: e.target.value });
   };
-
+  const [postData, { isError }] = useUpdateAdminMutation();
+  if (isError)
+    return (
+      <div className="h-screen flex justify-center items-center">
+        Loading ................ !
+      </div>
+    );
   let handleSuperAdminData = async () => {
-    // const updateData = {
-    //   AdminName: fromData.AdminName,
-    //   AdminNid: fromData.AdminNid,
-    //   AdminBio: fromData.AdminBio,
-    //   AdminAddress: fromData.AdminAddress,
-    //   AdminImage: fromData.AdminImage,
-    //   AdminPhone: fromData.AdminPhone,
-    //   AdminEmail: fromData.AdminEmail,
-    // };
-    // let res = await postData({ data: updateData, id }).unwrap();
-
-    //const postImage = dataUriToBlob(fromData.AdminImage)
-    const data = new FormData();
-    data.append("file", file);
-    data.append("upload_preset", "first_time_using");
-    data.append("cloud_name", "dffw2zrr5");
-    const resImg = await fetch(
-      "https://api.cloudinary.com/v1_1/dffw2zrr5/image/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const uploadImgUrl = await resImg.json();
-
     setloading(true);
-    const headers = {
-      method: "post",
-      user_id: params.id,
+    const uploadImgUrl = await uploadToCloudinary(file);
+    const updateData = {
+      AdminName: fromData.AdminName,
+      AdminNid: fromData.AdminNid,
+      AdminBio: fromData.AdminBio,
+      AdminAddress: fromData.AdminAddress,
+      AdminImage: uploadImgUrl.url,
+      AdminPhone: fromData.AdminPhone,
+      AdminEmail: fromData.AdminEmail,
     };
-    let res = await axios.post(
-      "http://localhost:4000/api/v1/update-admin",
-      {
-        AdminName: fromData.AdminName,
-        AdminNid: fromData.AdminNid,
-        AdminBio: fromData.AdminBio,
-        AdminAddress: fromData.AdminAddress,
-        AdminImage: uploadImgUrl.url,
-        AdminPhone: fromData.AdminPhone,
-        AdminEmail: fromData.AdminEmail,
-      },
-      { headers }
-    );
+    let res = await postData({ data: updateData, id: params.id }).unwrap();
+    //handleResponse(res, setloading);
     if (res.data["status"] != "success") {
       toast.success(res.data.message);
       setTimeout(() => {
@@ -114,12 +89,8 @@ const UpdateAdminProfile = () => {
         setloading(false);
       }, 2000);
     }
-    //handleResponse(res, setloading);
   };
-
-  const handleIconClick = () => {
-    fileInputRef.current.click();
-  };
+  // RTK query POST data successfull start ------
 
   return (
     <Loader delay={500}>
