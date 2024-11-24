@@ -2,12 +2,13 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import Spinner from "../spinner/Spinner";
 import handleResponse from "../Response/handleResponse";
-import { useCreateAdminMutation } from "../features/api/AdminSlice";
+import { useCreateAdminMutation } from "../features/api/SuperAdminapiSlice";
 
 const AdminForm = () => {
+  let navigate = null
   let [loading, setloading] = useState(false);
-  const [createAdmin, { isLoading, isError, error }] = useCreateAdminMutation();
-
+  const [createAdmin, { isLoading, isError }] = useCreateAdminMutation();
+  
   // admin data POST successfull start ----------------
   let [fromData, setFromData] = useState({
     AdminName: "",
@@ -17,18 +18,6 @@ const AdminForm = () => {
     AdminPhone: "",
     AdminEmail: "",
   });
-
-  let handleCreateAdmin = async () => {
-    const res = await createAdmin({
-      AdminName: fromData.AdminName,
-      AdminNid: fromData.AdminNid,
-      AdminBio: fromData.AdminBio,
-      AdminAddress: fromData.AdminAddress,
-      AdminPhone: fromData.AdminPhone,
-      AdminEmail: fromData.AdminEmail,
-    }).unwrap();
-    handleResponse(res, setloading);
-  };
   if (isError)
     return (
       <div className="h-screen flex justify-center items-center">
@@ -41,12 +30,17 @@ const AdminForm = () => {
         Data loading ..............
       </div>
     );
-  if (error)
-    return (
-      <div className="h-screen flex justify-center items-center">
-        Data loading ..............
-      </div>
-    );
+  let handleCreateAdmin = async () => {
+    const res = await createAdmin({
+      AdminName: fromData.AdminName,
+      AdminNid: fromData.AdminNid,
+      AdminBio: fromData.AdminBio,
+      AdminAddress: fromData.AdminAddress,
+      AdminPhone: fromData.AdminPhone,
+      AdminEmail: fromData.AdminEmail,
+    }).unwrap();
+    handleResponse(res, setloading, navigate);
+  };
   return (
     <div>
       <ToastContainer position="bottom-right" theme="light" />

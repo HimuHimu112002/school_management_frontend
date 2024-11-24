@@ -7,7 +7,7 @@ const UpdateTeacherInfo = () => {
         <h1 className="text-center py-8 text-4xl font-serif">Update teachers info</h1>
         <div className="flex gap-x-4 px-4">
           <div className="form-control w-80">
-            <h3 className="mb-4 text-3xl font-serif">Search teacher's id</h3>
+            <h3 className="mb-4 text-3xl font-serif">Search teacher id</h3>
             <input
               type="text"
               placeholder="Search"

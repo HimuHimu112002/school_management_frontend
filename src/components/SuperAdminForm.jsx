@@ -35,6 +35,7 @@ const SuperAdminForm = () => {
     error: adminError,
     isLoading: adminIsLoading,
   } = useGetSuperAdminQuery();
+
   useEffect(() => {
     if (adminData?.data[0]) {
       setFromData({
@@ -47,6 +48,7 @@ const SuperAdminForm = () => {
       });
     }
   }, [adminData]);
+  
   if (adminIsLoading)
     return (
       <div className="h-screen flex justify-center items-center">

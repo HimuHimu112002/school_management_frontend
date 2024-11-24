@@ -13,28 +13,6 @@ const AllAdminInfo = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setItemsPerPage] = useState(2);
   const [totalPages, setTotalPages] = useState(0);
-  // RTK query fetch data get successfull start ----------------
-  // const {
-  //   data:adminData,
-  //   error: adminError,
-  //   isLoading: adminIsLoading,
-  // } = useGetAdmindataQuery({
-  //   page: currentPage,
-  //   perPage,
-  // });
-  // console.log(adminData?.admins)
-  // if (adminIsLoading)
-  //   return (
-  //     <div className="h-screen flex justify-center items-center">
-  //       Loading...
-  //     </div>
-  //   );
-  // if (adminError)
-  //   return (
-  //     <div className="h-screen flex justify-center items-center">
-  //       Data load failed ...
-  //     </div>
-  //   );
 
   useEffect(() => {
     async function allAdmin() {

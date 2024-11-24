@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { getToken } from "../utility/storageUtility";
-import { useGetSuperAdminQuery } from "../features/api/AdminSlice";
+import { useGetAdminPersonalInfoQuery } from "../features/api/SuperAdminapiSlice";
 //const AxiosHeader = { headers: { token: getToken() } };
 
 const PersonalAdminProfile = () => {
@@ -9,7 +9,7 @@ const PersonalAdminProfile = () => {
     data: adminData,
     error: adminError,
     isLoading: adminIsLoading,
-  } = useGetSuperAdminQuery(token);
+  } = useGetAdminPersonalInfoQuery(token);
 
   if (adminIsLoading)
     return (
