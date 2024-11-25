@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { IoMdEye } from "react-icons/io";
 import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+import {MdDelete } from "react-icons/md";
 import { socket } from "../socket/socket";
 import { Link, useNavigate } from "react-router-dom";
-//import { useGetAdmindataQuery } from "../features/api/AdminSlice";
+import Pagination from "./Pagination";
 
 const AllAdminInfo = () => {
   let navigate = useNavigate();
@@ -29,6 +29,7 @@ const AllAdminInfo = () => {
     }
     allAdmin();
   }, [currentPage, perPage]);
+
   // admin data get successfull end ----------------
 
   // admin data delete with socket start ----------------
@@ -65,7 +66,7 @@ const AllAdminInfo = () => {
         <table className="table">
           <thead>
             <tr className="text-xl font-serif">
-              <th>key</th>
+              {/* <th>key</th> */}
               <th>Name</th>
               <th>Status</th>
               <th>Action</th>
@@ -76,7 +77,7 @@ const AllAdminInfo = () => {
           <tbody className="font-serif">
             {admin.map((item, i) => (
               <tr className="divide-x-2" key={i}>
-                <td>{i + 1}</td>
+                {/* <td>{i + 1}</td> */}
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -144,24 +145,8 @@ const AllAdminInfo = () => {
             ))}
           </tbody>
         </table>
+        <Pagination currentPage={currentPage}  totalPages={totalPages} setCurrentPage={setCurrentPage}/>
       </div>
-      <button
-        className="bg-secondary p-2 rounded text-white mt-4 cursor-pointer"
-        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-        disabled={currentPage === 1}
-      >
-        Previous
-      </button>
-
-      <span className="mx-2 bg-secondary p-2 rounded text-white mt-4 cursor-pointer">{`Page ${currentPage} of ${totalPages}`}</span>
-
-      <button
-        className="bg-secondary p-2 rounded text-white mt-4 cursor-pointer"
-        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-        disabled={currentPage === totalPages}
-      >
-        Next
-      </button>
     </>
   );
 };

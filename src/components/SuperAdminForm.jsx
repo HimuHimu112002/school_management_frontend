@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  useGetSuperAdminQuery,
-  useUpdateSuperAdminMutation,
+import {useGetSuperAdminQuery,useUpdateSuperAdminMutation,
 } from "../features/api/SuperAdminapiSlice";
 import Spinner from "../spinner/Spinner";
 import ProfileSkeleton from "../skeleton/ProfileSkeleton";
@@ -12,11 +10,7 @@ import { getToken } from "../utility/storageUtility";
 
 const SuperAdminForm = () => {
   let [loading, setloading] = useState(false);
-
-  // RTK query POST data successfull start ------
-  const [postData, { isError }] = useUpdateSuperAdminMutation();
-
-  // super admin form data get successfull start ----------------
+  const [postData] = useUpdateSuperAdminMutation();
   const [fromData, setFromData] = useState({
     AdminName: "",
     AdminNid: "",
@@ -32,8 +26,8 @@ const SuperAdminForm = () => {
   // RTK query fetch data get successfull start ----------------
   const {
     data: adminData,
-    error: adminError,
-    isLoading: adminIsLoading,
+    error,
+    isLoading,
   } = useGetSuperAdminQuery();
 
   useEffect(() => {
@@ -49,13 +43,13 @@ const SuperAdminForm = () => {
     }
   }, [adminData]);
   
-  if (adminIsLoading)
+  if (isLoading)
     return (
       <div className="h-screen flex justify-center items-center">
         Loading...
       </div>
     );
-  if (isError)
+  if (error)
     return (
       <div className="h-screen flex justify-center items-center">
         Data loading failed try agai.
@@ -82,7 +76,7 @@ const SuperAdminForm = () => {
     <div className="mt-5 animate-slideIn">
       <h1 className="text-center text-3xl font-serif">Main Authority</h1>
       <div className="my-6">
-        {adminError ? (
+        {error ? (
           <ProfileSkeleton />
         ) : (
           <div>

@@ -1,19 +1,14 @@
 import { Link } from "react-router-dom";
 import { useGetSuperAdminQuery } from "../features/api/SuperAdminapiSlice";
 const SuperAdminProfile = () => {
-  const {
-    data: adminData,
-    error: adminError,
-    isLoading: adminIsLoading,
-  } = useGetSuperAdminQuery();
-  if (adminIsLoading)
+  const { data, error, isLoading } = useGetSuperAdminQuery();
+  if (isLoading)
     return (
       <div className="h-screen flex justify-center items-center">
         Loading...
       </div>
     );
-
-  if (adminError)
+  if (error)
     return (
       <div className="h-screen flex justify-center items-center">
         Somthing is wrong ( Admin data loading failed....! ){" "}
@@ -30,7 +25,7 @@ const SuperAdminProfile = () => {
           ></img>
         </div>
         <div className="my-4">
-          {adminData?.data?.map((item) => (
+          {data?.data?.map((item) => (
             <>
               <strong className="text-success">Super Admin Name :</strong>
               <h1
@@ -81,7 +76,9 @@ const SuperAdminProfile = () => {
               </h1>
 
               <Link to={`/super-xyz`}>
-                <button className="btn btn-success text-white text-xl w-full mt-6 ">Update</button>
+                <button className="btn btn-success text-white text-xl w-full mt-6 ">
+                  Update
+                </button>
               </Link>
             </>
           ))}

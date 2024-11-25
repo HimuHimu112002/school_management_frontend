@@ -1,59 +1,32 @@
-//import { useState } from "react";
-
-const Pagination = () => {
-//   let [perPageKey,setPerPageKey]=useState(5);
-
-//   const handlePageClick = (event) => {
-//     GetProductList(event.selected+1, perPageKey, searchKey)
-// };
+import { MdArrowLeft } from "react-icons/md";
+import { RiArrowRightSFill } from "react-icons/ri";
+import PropTypes from "prop-types";
+const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
   return (
-    <div className="join mt-4 shadow-lg border border-gray-400">
-      <input
-        className="join-item btn btn-square"
-        type="radio"
-        name="options"
-        aria-label="1"
-        defaultChecked
-      />
-      <input
-        className="join-item btn btn-square"
-        type="radio"
-        name="options"
-        aria-label="2"
-      />
-      <input
-        className="join-item btn btn-square"
-        type="radio"
-        name="options"
-        aria-label="3"
-      />
-      <input
-        className="join-item btn btn-square"
-        type="radio"
-        name="options"
-        aria-label="4"
-      />
-    </div>
-    // <ReactPaginate
-    //   previousLabel="<"
-    //   nextLabel=">"
-    //   pageClassName="page-item"
-    //   pageLinkClassName="page-link"
-    //   previousClassName="page-item"
-    //   previousLinkClassName="page-link"
-    //   nextClassName="page-item"
-    //   nextLinkClassName="page-link"
-    //   breakLabel="..."
-    //   breakClassName="page-item"
-    //   breakLinkClassName="page-link"
-    //   pageCount={Total / perPageKey}
-    //   marginPagesDisplayed={2}
-    //   pageRangeDisplayed={5}
-    //   onPageChange={handlePageClick}
-    //   containerClassName="pagination"
-    //   activeClassName="active"
-    // />
+    <>
+      <button
+        className="bg-secondary p-2 rounded-full text-white mt-5 ml-4 cursor-pointer"
+        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+        disabled={currentPage === 1}
+      >
+        <MdArrowLeft />
+      </button>
+
+      <span className="mx-2 bg-secondary p-2 rounded text-white mt-4 cursor-pointer">{`Page ${currentPage} of ${totalPages}`}</span>
+
+      <button
+        className="bg-secondary p-2 rounded-full text-white mt-4 cursor-pointer"
+        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+        disabled={currentPage === totalPages}
+      >
+        <RiArrowRightSFill />
+      </button>
+    </>
   );
 };
-
+Pagination.propTypes = {
+  currentPage: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
+};
 export default Pagination;

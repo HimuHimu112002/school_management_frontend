@@ -40,7 +40,6 @@ const UpdateAdminProfile = () => {
   let handleFromdata = (e) => {
     setFromData({ ...fromData, [e.target.name]: e.target.value });
   };
-
   const {
     data: adminData,
     error: adminError,

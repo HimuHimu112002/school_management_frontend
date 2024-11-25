@@ -83,11 +83,18 @@ export const SuperAdminapiSlice = createApi({
         },
       }),
     }),
+    getAllAdminWithPagination: builder.query({
+      query: ({currentPage, perPage}) => ({
+        url: `/get-admin/${currentPage}/${perPage}`,
+        method: "GET",
+      }),
+    })
     // done admin section with rtk end
   }),
 });
 export const {
   useGetSuperAdminQuery,
+  useGetAllAdminWithPaginationQuery,
   useGetAdminProfileAccessSuperAdminQuery,
   useGetAdminlInfoWithParamsQuery,
   useGetAdminPersonalInfoQuery,
