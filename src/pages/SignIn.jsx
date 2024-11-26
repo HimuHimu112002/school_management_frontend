@@ -35,8 +35,12 @@ const SignIn = () => {
     handleResponse(res, setloading, navigate);
 
     // store into redux
-    dispatch(res.userInfo)
-    setUserInfo(JSON.stringify(res.userInfo))
+    dispatch(res.userInfo);
+    setUserInfo(JSON.stringify(res.userInfo));
+  };
+
+  let handleLogin = () => {
+    window.open(`http://localhost:4000/api/v1/google`, "_self");
   };
   return (
     <div className="flex justify-center items-center h-screen animate-slideIn">
@@ -44,18 +48,24 @@ const SignIn = () => {
       <div className="w-auto lg:w-2/6 mx-auto shadow-xl p-10 rounded-lg border border-secondary">
         <h1 className="text-center text-3xl font-serif">Sign-in</h1>
         <div className="flex justify-center gap-x-3 rounded my-4 cursor-pointer ">
-          <img
-            className="w-24 px-2 border border-slate-300"
-            src="image/google.png"
-          ></img>
-          <img
-            className="w-24 px-2 border border-slate-300"
-            src="image/github.png"
-          ></img>
-          <img
-            className="w-24 px-2 border border-slate-300"
-            src="image/facebook.png"
-          ></img>
+          <a onClick={handleLogin}>
+            <img
+              className="w-24 px-2 border border-slate-300"
+              src="image/google.png"
+            ></img>
+          </a>
+          <a>
+            <img
+              className="w-24 px-2 border border-slate-300"
+              src="image/github.png"
+            ></img>
+          </a>
+          <a>
+            <img
+              className="w-24 px-2 border border-slate-300"
+              src="image/facebook.png"
+            ></img>
+          </a>
         </div>
         <p className="text-xl font-serif mb-2">Enter email</p>
         <input

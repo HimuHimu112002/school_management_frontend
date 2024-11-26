@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { clearToken, GetUserRoll } from "../utility/storageUtility";
+import { clearToken, GetUserRoll, RemoveUserRoll } from "../utility/storageUtility";
 import { ToastContainer } from "react-toastify";
 
 const TopBar = () => {
@@ -7,6 +7,7 @@ const TopBar = () => {
   let roll = GetUserRoll();
   let handleLogout = () => {
     clearToken();
+    RemoveUserRoll()
     navigate("/sign-in");
   };
   return (

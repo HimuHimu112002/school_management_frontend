@@ -5,13 +5,14 @@ import { IoMdLogOut } from "react-icons/io";
 import { MdAppRegistration } from "react-icons/md";
 import { SiGoogleclassroom } from "react-icons/si";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { clearToken, GetUserRoll } from "../utility/storageUtility";
+import { clearToken, GetUserRoll, RemoveUserRoll } from "../utility/storageUtility";
 const LeftSideBar = () => {
   let navigate = useNavigate();
   let roll = GetUserRoll();
 
   let handleLogout = () => {
     clearToken();
+    RemoveUserRoll()
     navigate("/sign-in");
   };
 
@@ -66,6 +67,11 @@ const LeftSideBar = () => {
               Update Student Info
             </li>
           </Link>
+
+          <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
+            <GrUpdate className="mt-1 mr-4" />
+            Student Drwing
+          </li>
 
           <Link to="/class">
             <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
