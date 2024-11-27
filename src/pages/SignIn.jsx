@@ -3,15 +3,14 @@ import { useState } from "react";
 import Spinner from "../spinner/Spinner";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../features/api/SuperAdminapiSlice";
-import { setToken, setUserInfo, setUserRoll } from "../utility/storageUtility";
+import { setToken, setUserRoll } from "../utility/storageUtility";
 import handleResponse from "../Response/handleResponse";
-import { useDispatch } from "react-redux";
 const SignIn = () => {
   let navigate = useNavigate();
-  const dispatch = useDispatch();
   let [loading, setloading] = useState(false);
   let [userEmail, setUserEmail] = useState("");
   let [userPass, setUserPass] = useState("");
+
   // RTK query POST data successfull start ------
   const [loginData, { isError }] = useLoginMutation();
 
@@ -26,17 +25,9 @@ const SignIn = () => {
       userEmail: userEmail,
       userPassword: userPass,
     }).unwrap();
-
-    // set user roll in local storage
     setUserRoll(res.roll);
-    // set token in cookie
     setToken(res.token);
-    // set res navigate and loading
     handleResponse(res, setloading, navigate);
-
-    // store into redux
-    dispatch(res.userInfo);
-    setUserInfo(JSON.stringify(res.userInfo));
   };
 
   let handleLogin = () => {
@@ -56,13 +47,13 @@ const SignIn = () => {
           </a>
           <a>
             <img
-              className="w-24 px-2 border border-slate-300"
+              className="w-32 px-2 border border-slate-300"
               src="image/github.png"
             ></img>
           </a>
           <a>
             <img
-              className="w-24 px-2 border border-slate-300"
+              className="w-20 px-2 border border-slate-300"
               src="image/facebook.png"
             ></img>
           </a>

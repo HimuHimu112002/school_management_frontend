@@ -45,6 +45,7 @@ const AllAdminInfo = () => {
       }
     });
     socket.on("deleteAdminUser");
+    socket.on("deleteAuthUser");
   };
 
   // view admin profile
@@ -58,7 +59,6 @@ const AllAdminInfo = () => {
     socket.on("updateAdminStatus");
     socket.on("updateUserStatus");
   };
-
   return (
     <>
       <h1 className="text-center text-3xl font-serif mt-24 mb-2">All admin</h1>
@@ -75,9 +75,8 @@ const AllAdminInfo = () => {
             </tr>
           </thead>
           <tbody className="font-serif">
-            {admin.map((item, i) => (
+            {admin?.map((item, i) => (
               <tr className="divide-x-2" key={i}>
-                {/* <td>{i + 1}</td> */}
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">

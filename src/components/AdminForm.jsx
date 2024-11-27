@@ -39,7 +39,7 @@ const AdminForm = () => {
       AdminPhone: fromData.AdminPhone,
       AdminEmail: fromData.AdminEmail,
     }).unwrap();
-    handleResponse(res, setloading, navigate);
+    handleResponse(res, setloading,navigate);
   };
   return (
     <div>
