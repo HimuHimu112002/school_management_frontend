@@ -38,14 +38,14 @@ const SignIn = () => {
       <ToastContainer position="top-right" theme="light" />
       <div className="w-auto lg:w-2/6 mx-auto shadow-xl p-10 rounded-lg border border-secondary">
         <h1 className="text-center text-3xl font-serif">Sign-in</h1>
-        <div className="flex justify-center gap-x-3 rounded my-4 cursor-pointer ">
+        <div className="rounded my-4">
           <a onClick={handleLogin}>
             <img
-              className="w-24 px-2 border border-slate-300"
+              className="w-32 px-2 border border-slate-300 cursor-pointer"
               src="image/google.png"
             ></img>
           </a>
-          <a>
+          {/* <a>
             <img
               className="w-32 px-2 border border-slate-300"
               src="image/github.png"
@@ -56,7 +56,7 @@ const SignIn = () => {
               className="w-20 px-2 border border-slate-300"
               src="image/facebook.png"
             ></img>
-          </a>
+          </a> */}
         </div>
         <p className="text-xl font-serif mb-2">Enter email</p>
         <input

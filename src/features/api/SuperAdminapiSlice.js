@@ -4,7 +4,7 @@ export const SuperAdminapiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/api/v1" }),
   endpoints: (builder) => ({
-    // done get and update super admin with rtk start
+    //get and update super admin with rtk start
     getSuperAdmin: builder.query({
       query: () => "/get-super-admin",
     }),
@@ -21,7 +21,7 @@ export const SuperAdminapiSlice = createApi({
     }),
     // done get and update super admin with rtk end
 
-    // done login and forgot with rtk start
+    //login and forgot with rtk start
     login: builder.mutation({
       query: (data) => ({
         url: "/sign-in",
@@ -38,7 +38,7 @@ export const SuperAdminapiSlice = createApi({
     }),
     // done login and forgot with rtk end
 
-    // done admin section with rtk start
+    //admin section with rtk start
     createAdmin: builder.mutation({
       query: (data) => ({
         url: "/save-admin",
@@ -84,12 +84,22 @@ export const SuperAdminapiSlice = createApi({
       }),
     }),
     getAllAdminWithPagination: builder.query({
-      query: ({currentPage, perPage}) => ({
+      query: ({ currentPage, perPage }) => ({
         url: `/get-admin/${currentPage}/${perPage}`,
         method: "GET",
       }),
-    })
+    }),
     // done admin section with rtk end
+
+    // teacher section with rtk start
+    createTeacher: builder.mutation({
+      query: (data) => ({
+        url: "/save-teachers",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    // done teacher section with rtk end
   }),
 });
 export const {
@@ -103,4 +113,5 @@ export const {
   useUpdateAdminMutation,
   useUpdateSuperAdminMutation,
   useCreateAdminMutation,
+  useCreateTeacherMutation,
 } = SuperAdminapiSlice;

@@ -53,8 +53,8 @@ const AddNewStudent = () => {
             placeholder="Admission fee"
             className="input input-bordered w-full max-w-xs mr-1 mb-6"
           />
+          <button className="btn btn-secondary">Submit</button>
         </div>
-        <button className="btn btn-secondary mt-6 ">Submit</button>
       </div>
     </>
   );
