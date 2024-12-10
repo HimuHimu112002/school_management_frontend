@@ -81,10 +81,6 @@ const AddNewTeacher = () => {
             onChange={handleFromdata}
             className="focus:outline-none focus:border-secondary input input-bordered w-full mb-5"
           />
-          <input
-            type="file"
-            className="file-input file-input-bordered w-full max-w-xs mb-2"
-          />
           <select
             name="TeacherSubject"
             onChange={handleFromdata}
