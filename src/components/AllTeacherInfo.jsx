@@ -27,7 +27,6 @@ const AllTeacherInfo = () => {
   return (
     <>
       <div className="overflow-x-auto shadow-md p-6 rounded-md animate-slideIn">
-
         <div className="flex gap-x-4 px-4">
           <div className="form-control w-80">
             <h3 className="mb-1 text-xl font-serif">Search teacher id</h3>
@@ -38,60 +37,50 @@ const AllTeacherInfo = () => {
             />
           </div>
         </div>
-        <table className="table">
+        <table className="table w-[1100px]">
           <thead>
             <tr>
+              <th>ID</th>
               <th>Name</th>
-              <th>Email</th>
+              <th>Subject</th>
               <th>N-id</th>
               <th>Bio</th>
               <th>Address</th>
               <th>Phone</th>
-              <th>Subject</th>
             </tr>
           </thead>
           {admin.map((item, i) => (
             <tbody key={i}>
               <tr>
+                <td className="font-serif">{item?.id}</td>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
+                      <div className="mask mask-squircle h-12 w-auto">
                         <img
                           src="https://img.daisyui.com/images/profile/demo/2@94.webp"
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
                     </div>
-                    <div>
-                      <div className="font-bold">{item?.TeacherName}</div>
-                      <div className="text-sm opacity-50">{item?.TeacherRole}</div>
+                    <div className="text-sm opacity-70">
+                      <span className="font-bold">Name: {item?.TeacherName}</span>
+                      <br />
+                      <span className="text-secondary font-serif font-bold">
+                        Role: {item?.TeacherRole}
+                      </span>
+                      <br />
+                      <span className="text-secondary font-serif font-bold">
+                        Email: {item?.TeacherEmail}{" "}
+                      </span>
                     </div>
                   </div>
                 </td>
-                <td>
-                  {item?.TeacherEmail}
-                </td>
-                <td>
-                  {item?.TeacherNid}
-                </td>
-                <td>
-                  {item?.TeacherBio}
-                </td>
-                <td>
-                  {item?.TeacherAddress}
-                </td>
-                <td>
-                  {item?.TeacherPhone}
-                </td>
-                <td>
-                  {item?.TeacherSubject}
-                </td>
-                {/* <th>
-                  <button className="btn bg-green-800 text-white btn-ghost btn-sm">
-                    Profile
-                  </button>
-                </th> */}
+                <td className="font-serif font-semibold">{item?.TeacherSubject}</td>
+                <td className="font-serif">{item?.TeacherNid}</td>
+                <td className="font-serif">{item?.TeacherBio}</td>
+                <td className="font-serif">{item?.TeacherAddress}</td>
+                <td className="font-serif">{item?.TeacherPhone}</td>
               </tr>
             </tbody>
           ))}
