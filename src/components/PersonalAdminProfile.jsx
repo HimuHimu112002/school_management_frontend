@@ -19,9 +19,9 @@ const PersonalAdminProfile = () => {
       </div>
     );
   return (
-    <div className="my-10 animate-slideIn">
-      <div className="w-2/4 m-auto p-5 bg-gray-900 rounded">
-        <div className="w-24 h-24 rounded-full mx-auto flex justify-center items-center">
+    <div className="my-4 animate-slideIn">
+      <div className="w-2/4 m-auto p-5 bg-gray-300 rounded">
+        <div className="w-24 h-24 border rounded-full mx-auto flex justify-center items-center">
           {data?.data?.AdminName ? (
             <img
               className="w-full h-full rounded-full"
@@ -32,7 +32,7 @@ const PersonalAdminProfile = () => {
             <img className="w-full h-full rounded-full" src="image/test.jpg" />
           )}
         </div>
-        <div className="shadow-lg p-6 rounded-md">
+        <div className="rounded-md">
           <>
             <strong className="text-success">Admin Name :</strong>
             <h1 className="font-serif text-white text-xl bg-gray-700 rounded p-2 mb-3">

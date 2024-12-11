@@ -5,14 +5,18 @@ import { IoMdLogOut } from "react-icons/io";
 import { MdAppRegistration } from "react-icons/md";
 import { SiGoogleclassroom } from "react-icons/si";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { clearToken, GetUserRoll, RemoveUserRoll } from "../utility/storageUtility";
+import {
+  clearToken,
+  GetUserRoll,
+  RemoveUserRoll,
+} from "../utility/storageUtility";
 const LeftSideBar = () => {
   let navigate = useNavigate();
   let roll = GetUserRoll();
 
   let handleLogout = () => {
     clearToken();
-    RemoveUserRoll()
+    RemoveUserRoll();
     navigate("/sign-in");
   };
 
@@ -26,13 +30,6 @@ const LeftSideBar = () => {
             </li>
           </Link>
 
-          <Link to="/T-signUp">
-            <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
-              <MdAppRegistration className="mt-1" />
-              <p>Teacher Registration</p>
-            </li>
-          </Link>
-
           <Link to="/all-student">
             <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
               <FcBusinessman className="mt-1 mr-4" />
@@ -40,10 +37,10 @@ const LeftSideBar = () => {
             </li>
           </Link>
 
-          <Link to="/all-teacher">
+          <Link to="/update-student">
             <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
-              <FcBusinessman className="mt-1 mr-4" />
-              All Teacher
+              <GrUpdate className="mt-1 mr-4" />
+              Update Student Info
             </li>
           </Link>
 
@@ -54,6 +51,20 @@ const LeftSideBar = () => {
             </li>
           </Link>
 
+          <Link to="/T-signUp">
+            <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
+              <MdAppRegistration className="mt-1" />
+              <p>Teacher Registration</p>
+            </li>
+          </Link>
+
+          <Link to="/all-teacher">
+            <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
+              <FcBusinessman className="mt-1 mr-4" />
+              All Teacher
+            </li>
+          </Link>
+
           <Link to="/update-teacher">
             <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
               <GrUpdate className="mt-1 mr-4" />
@@ -61,10 +72,10 @@ const LeftSideBar = () => {
             </li>
           </Link>
 
-          <Link to="/update-student">
+          <Link to="/update-teacher">
             <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
               <GrUpdate className="mt-1 mr-4" />
-              Update Student Info
+              Buy Additional Course
             </li>
           </Link>
 
