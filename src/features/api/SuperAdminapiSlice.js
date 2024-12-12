@@ -100,6 +100,17 @@ export const SuperAdminapiSlice = createApi({
       }),
     }),
     // done teacher section with rtk end
+
+
+    // student section with rtk start
+    createStudent: builder.mutation({
+      query: (data) => ({
+        url: "/save-student",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    // done student section with rtk end
   }),
 });
 export const {
@@ -114,4 +125,5 @@ export const {
   useUpdateSuperAdminMutation,
   useCreateAdminMutation,
   useCreateTeacherMutation,
+  useCreateStudentMutation
 } = SuperAdminapiSlice;

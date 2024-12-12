@@ -36,17 +36,15 @@ const AllStudentInfo = () => {
         `http://localhost:4000/api/v1/studentSearch/S-${StudentSearch}/${studentSelect}/${version}`
       );
       setStudentItem(data.data.data[0]);
-      console.log(data)
     }
     searchByTeacher();
   });
   // student data search successfull end ----------------
-  console.log(StudentSearch)
   return (
     <>
       <div className="overflow-x-auto shadow-md rounded-md animate-slideIn">
         <h1 className="text-center py-8 text-2xl font-serif">All Student</h1>
-        <div className="flex gap-x-4 px-4 my-3">
+        <div className="flex gap-x-2 px-4 my-3">
           <div className="w-full form-control">
             <h3 className="text-xl font-serif">Search student id</h3>
             <input
@@ -60,7 +58,7 @@ const AllStudentInfo = () => {
             <p className="text-xl font-serif">Select student Class</p>
             <select
               onChange={(e) => setStudentSelect(e.target.value)}
-              className="select select-bordered w-full max-w-xs mr-1"
+              className="select select-bordered max-w-xs mr-1"
             >
               <option disabled selected>
                 Select Class
@@ -72,7 +70,7 @@ const AllStudentInfo = () => {
               <option>5</option>
             </select>
           </div>
-          <div className="flex justify-center gap-x-4 mt-9">
+          <div className="flex gap-x-4 mt-9">
             <div className="flex gap-x-1">
               <p>Bangla</p>
               <input
@@ -93,7 +91,7 @@ const AllStudentInfo = () => {
             </div>
           </div>
         </div>
-        <table className="table">
+        <table className="table w-[1000px]">
           <thead>
             <tr>
               <th>ID</th>

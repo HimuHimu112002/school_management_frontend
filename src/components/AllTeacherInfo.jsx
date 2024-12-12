@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const AllTeacherInfo = () => {
   let [admin, setAdmin] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [perPage, setItemsPerPage] = useState(5);
+  const [perPage, setItemsPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
   const [TeacherSearchItem, setTeacherSearchItem] = useState("");
   const [TeacherSearch, setTeacherSearch] = useState("");
