@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const UpdateStudentInfo = () => {
   let [version, setVersion] = useState("false");
@@ -12,6 +13,8 @@ const UpdateStudentInfo = () => {
   const [StudentSearch, setStudentSearch] = useState("");
   const [studentSelect, setStudentSelect] = useState("");
   const [studentItem, setStudentItem] = useState("");
+
+  const [selectedIds, setSelectedIds] = useState([]);
 
   useEffect(() => {
     async function allAdmin() {
@@ -38,8 +41,29 @@ const UpdateStudentInfo = () => {
       setStudentItem(data.data.data[0]);
     }
     searchByTeacher();
-  },[version,StudentSearch,studentSelect]);
+  }, [version, StudentSearch, studentSelect]);
   // student data search successfull end ----------------
+
+  const handleCheckboxChange = (id) => {
+    setSelectedIds((prev) =>
+      prev.includes(id)
+        ? prev.filter((selectedId) => selectedId !== id)
+        : [...prev, id]
+    );
+  };
+  const handleDelete = async () => {
+    if (selectedIds.length === 0) {
+      toast.success("No persons selected for deletion.");
+      return;
+    }
+    const res = await axios.delete(
+      "http://localhost:4000/api/v1/deleteManyStudent",
+      {
+        data: { ids: selectedIds },
+      }
+    );
+    toast.success(res.data.message);
+  };
   return (
     <>
       <div className="overflow-x-auto px-4 shadow-md p-6 rounded-md animate-slideIn">
@@ -94,20 +118,33 @@ const UpdateStudentInfo = () => {
           </div>
         </div>
         <table className="table">
-          {/* head */}
           <thead>
             <tr>
+              <th
+                className="text-red-600 cursor-pointer"
+                onClick={handleDelete}
+              >
+                Delete
+              </th>
               <th>ID</th>
               <th>Name</th>
               <th>Class</th>
               <th>Version</th>
-              <th>Edit</th>
-              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             {studentItem ? (
               <tr>
+                <th>
+                  <label>
+                    <input
+                      onChange={() => handleCheckboxChange(studentItem?._id)}
+                      checked={selectedIds.includes(studentItem?._id)}
+                      type="checkbox"
+                      className="checkbox border border-red-500"
+                    />
+                  </label>
+                </th>
                 <th>
                   <p>{studentItem?.id}</p>
                 </th>
@@ -122,26 +159,28 @@ const UpdateStudentInfo = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{studentItem?.StudentName}</div>
+                      <div className="font-bold">
+                        {studentItem?.StudentName}
+                      </div>
                     </div>
                   </div>
                 </td>
                 <td>{studentItem?.StudentClass}</td>
                 <td>{studentItem?.StudentClassVersion}</td>
-                <th>
-                  <button className="btn btn-sm bg-green-500 text-white">
-                    Edit
-                  </button>
-                </th>
-                <th>
-                  <button className="btn btn-sm bg-red-500 text-white">
-                    Delete
-                  </button>
-                </th>
               </tr>
             ) : (
               admin?.map((item, i) => (
                 <tr key={i}>
+                  <th>
+                    <label>
+                      <input
+                        onChange={() => handleCheckboxChange(item?._id)}
+                        checked={selectedIds.includes(item?._id)}
+                        type="checkbox"
+                        className="checkbox border border-red-500"
+                      />
+                    </label>
+                  </th>
                   <th>
                     <p>{item?.id}</p>
                   </th>
@@ -162,16 +201,6 @@ const UpdateStudentInfo = () => {
                   </td>
                   <td>{item?.StudentClass}</td>
                   <td>{item?.StudentClassVersion}</td>
-                  <th>
-                    <button className="btn btn-sm bg-green-500 text-white">
-                      Edit
-                    </button>
-                  </th>
-                  <th>
-                    <button className="btn btn-sm bg-red-500 text-white">
-                      Delete
-                    </button>
-                  </th>
                 </tr>
               ))
             )}
