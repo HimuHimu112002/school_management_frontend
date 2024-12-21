@@ -37,7 +37,8 @@ const UpdateStudentRoll = () => {
       setStudentItem(data.data.data);
     }
     searchByTeacher();
-  });
+  },[version,
+    studentSelect]);
   return (
     <>
       <div className="overflow-x-auto px-4 shadow-md p-6 rounded-md animate-slideIn">

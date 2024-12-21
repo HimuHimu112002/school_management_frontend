@@ -24,6 +24,8 @@ import UpdateAdmin from "./pages/UpdateAdmin";
 import HomePage from "./pages/HomePage";
 import PersonalAdmin from "./pages/PersonalAdmin";
 import Chart from "./pages/Chart";
+import Invoice from "./pages/Invoice";
+import BuyCourses from "./pages/BuyCourses";
 
 let router = createBrowserRouter(
   createRoutesFromElements(
@@ -46,6 +48,8 @@ let router = createBrowserRouter(
         <Route path="/adminProfile/:id" element={<AllAdminProfile />}></Route>
         <Route path="/updateAdminProfile/:id" element={<UpdateAdmin />}></Route>
         <Route path="/PersonalAdminProfile" element={<PersonalAdmin />}></Route>
+        <Route path="/invoice" element={<Invoice />}></Route>
+        <Route path="/byCourse" element={<BuyCourses />}></Route>
       </Route>
       <Route path="/sign-in" element={<SignIn />}></Route>
       <Route path="/forgot" element={<ForgotPassword />}></Route>

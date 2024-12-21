@@ -38,7 +38,7 @@ const UpdateStudentInfo = () => {
       setStudentItem(data.data.data[0]);
     }
     searchByTeacher();
-  });
+  },[version,StudentSearch,studentSelect]);
   // student data search successfull end ----------------
   return (
     <>

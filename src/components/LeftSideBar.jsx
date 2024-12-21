@@ -51,6 +51,13 @@ const LeftSideBar = () => {
             </li>
           </Link>
 
+          <Link to="/invoice">
+            <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
+              <GrUpdate className="mt-1 mr-4" />
+              Student Invoice
+            </li>
+          </Link>
+
           <Link to="/T-signUp">
             <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
               <MdAppRegistration className="mt-1" />
@@ -72,7 +79,7 @@ const LeftSideBar = () => {
             </li>
           </Link>
 
-          <Link to="/update-teacher">
+          <Link to="/byCourse">
             <li className="flex font-serif font-medium text-xl px-2 py-3 cursor-pointer hover:transform hover:translate-x-1 duration-200 hover:bg-[#F100B7] hover:text-white mb-5">
               <GrUpdate className="mt-1 mr-4" />
               Buy Additional Course
