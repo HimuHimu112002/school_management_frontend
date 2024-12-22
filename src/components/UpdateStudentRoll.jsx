@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const UpdateStudentRoll = () => {
   let [version, setVersion] = useState("false");
@@ -11,6 +12,7 @@ const UpdateStudentRoll = () => {
 
   const [studentSelect, setStudentSelect] = useState("");
   const [studentItem, setStudentItem] = useState([]);
+  const [StudentRollUpdate, setStudentRollUpdate] = useState([]);
 
   useEffect(() => {
     async function allAdmin() {
@@ -37,8 +39,33 @@ const UpdateStudentRoll = () => {
       setStudentItem(data.data.data);
     }
     searchByTeacher();
-  },[version,
-    studentSelect]);
+  }, [version, studentSelect]);
+
+  const handleInputChange = (id, value) => {
+    setStudentRollUpdate((prevRoles) => {
+      const existingUser = prevRoles.find((user) => user.id === id);
+      if (existingUser) {
+        return prevRoles.map((user) =>
+          user.id === id ? { ...user, data: value } : user
+        );
+      } else {
+        return [...prevRoles, { id, data: value }];
+      }
+    });
+  };
+  let handleUpdateRoll = async () => {
+    if (StudentRollUpdate.length === 0) {
+      toast.success("Input empty value for update.");
+      return;
+    }
+    const res = await axios.post(
+      "http://localhost:4000/api/v1/updateManyStudent",
+      {
+        data: StudentRollUpdate,
+      }
+    );
+    toast.success(res.data.message);
+  };
   return (
     <>
       <div className="overflow-x-auto px-4 shadow-md p-6 rounded-md animate-slideIn">
@@ -83,6 +110,12 @@ const UpdateStudentRoll = () => {
             </div>
           </div>
         </div>
+        <button
+          onClick={handleUpdateRoll}
+          className="mt-3 btn btn-sm bg-green-500 text-white"
+        >
+          Multiple Update
+        </button>
         <table className="table mt-4">
           {/* head */}
           <thead>
@@ -119,6 +152,9 @@ const UpdateStudentRoll = () => {
                     <td>{item?.id}</td>
                     <td>
                       <input
+                        onChange={(e) =>
+                          handleInputChange(item._id, e.target.value)
+                        }
                         type="text"
                         placeholder="Roll"
                         className="input input-bordered w-20 md:w-auto"
@@ -126,7 +162,7 @@ const UpdateStudentRoll = () => {
                     </td>
                     <th>
                       <button className="btn btn-sm bg-green-500 text-white">
-                        Update roll
+                        Single update
                       </button>
                     </th>
                   </tr>
@@ -153,6 +189,9 @@ const UpdateStudentRoll = () => {
                     <td>{item?.id}</td>
                     <td>
                       <input
+                        onChange={(e) =>
+                          handleInputChange(item._id, e.target.value)
+                        }
                         type="text"
                         placeholder="Roll"
                         className="input input-bordered w-20 md:w-auto"
