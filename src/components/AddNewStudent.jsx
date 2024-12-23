@@ -35,10 +35,27 @@ const AddNewStudent = () => {
       StudentClassVersion: version,
       StudentClass: fromData.StudentClass,
       StudentAdmissionFee: fromData.StudentAdmissionFee,
-    }).unwrap();
+    }).unwrap()
     handleResponse(res, setloading);
-  };
+  }
   // student data create successfull end ----------------
+
+  // let handleNewStudentPayment = async () => {
+  //   const res = await createStudent({
+  //     StudentName: fromData.StudentName,
+  //     StudentFatherName: fromData.StudentFatherName,
+  //     StudentMotherName: fromData.StudentMotherName,
+  //     StudentAddress: fromData.StudentAddress,
+  //     StudentPhone: fromData.StudentPhone,
+  //     StudentClassVersion: version,
+  //     StudentClass: fromData.StudentClass,
+  //     StudentAdmissionFee: fromData.StudentAdmissionFee,
+  //   }).unwrap().then((result)=>{
+  //     window.location.replace(result.url)
+  //   })
+  //   handleResponse(res, setloading);
+  // }
+  // student payment create successfull end ----------------
   return (
     <>
       <div className="shadow-lg p-6 rounded-md animate-slideIn">
@@ -129,11 +146,11 @@ const AddNewStudent = () => {
                 <option disabled selected>
                   Admission fee of bangla version
                 </option>
-                <option>Bv-one-100tk</option>
-                <option>Bv-two-200tk</option>
-                <option>Bv-three-300tk</option>
-                <option>Bv-four-400tk</option>
-                <option>Bv-five-500tk</option>
+                <option>100</option>
+                <option>200</option>
+                <option>300</option>
+                <option>400</option>
+                <option>500</option>
               </select>
             ) : (
               <select
@@ -144,20 +161,27 @@ const AddNewStudent = () => {
                 <option disabled selected>
                   Admission fee of english version
                 </option>
-                <option>Ev-one-300tk</option>
-                <option>Ev-two-400tk</option>
-                <option>Ev-three-500tk</option>
-                <option>Ev-four-600tk</option>
-                <option>Ev-five-700tk</option>
+                <option>300</option>
+                <option>400</option>
+                <option>500</option>
+                <option>600</option>
+                <option>700tk</option>
               </select>
             )}
             {loading ? (
               <Spinner />
             ) : (
               <button onClick={handleNewStudent} className="btn btn-secondary">
-                Pay fee Confirme admission
+                Save new student
               </button>
             )}
+            {/* {loading ? (
+              <Spinner />
+            ) : (
+              <button onClick={handleNewStudentPayment} className="btn btn-secondary">
+                Pay fee Confirme admission
+              </button>
+            )} */}
           </div>
         </>
       </div>
